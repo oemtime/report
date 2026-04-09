@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>杭州新联通航 · 2026五一媒体运营推广执行方案</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{colors:{navy:'#1E3A5F','navy-deep':'#0F2440','sky-blue':'#4DA6FF','cloud':'#F5F8FC','ice':'#E8F0FE','gold':'#F0B848','coral':'#FF6B6B','mint':'#34D399'},fontFamily:{serif:['Noto Serif SC','serif'],sans:['Noto Sans SC','sans-serif'],mono:['JetBrains Mono','monospace']}}}}
+</script>
+<style>
+/* --- BASE & TEXTURE --- */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans SC',sans-serif;background:#0a1a2e;color:#c8daf0;overflow-x:hidden}
+::selection{background:#4DA6FF;color:#fff}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#0a1a2e}
+::-webkit-scrollbar-thumb{background:#4DA6FF;border-radius:3px}
+
+/* Noise overlay */
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:0.4}
+
+/* Progress bar */
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#4DA6FF,#34D399,#F0B848);z-index:10000;width:0%;transition:width .1s}
+
+/* Hero */
+.hero-bg{background:linear-gradient(135deg,#0a1a2e 0%,#1E3A5F 40%,#2a5a8f 70%,#4DA6FF 100%);position:relative;overflow:hidden}
+.hero-bg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to top,#0a1a2e,transparent)}
+.cloud-layer{position:absolute;width:200%;height:100%;opacity:0.06;
+  background:radial-gradient(ellipse 600px 200px at 20% 60%,#fff,transparent),
+  radial-gradient(ellipse 400px 150px at 70% 40%,#fff,transparent),
+  radial-gradient(ellipse 500px 180px at 50% 80%,#fff,transparent)}
+
+/* Glass card */
+.glass{background:rgba(15,36,64,0.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(77,166,255,0.15);border-radius:16px}
+.glass-light{background:rgba(232,240,254,0.05);backdrop-filter:blur(12px);border:1px solid rgba(77,166,255,0.1);border-radius:12px}
+
+/* Section styling */
+.section-title{font-family:'Noto Serif SC',serif;font-weight:700}
+.section-num{font-family:'JetBrains Mono',monospace;color:#4DA6FF;font-size:0.85rem;letter-spacing:2px}
+.kpi-card{background:linear-gradient(135deg,rgba(77,166,255,0.12),rgba(52,211,153,0.08));border:1px solid rgba(77,166,255,0.2);border-radius:16px;padding:1.5rem;text-align:center}
+.kpi-value{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:#4DA6FF}
+.kpi-label{font-size:0.85rem;color:#8ba8c8;margin-top:0.25rem}
+
+/* SWOT */
+.swot-cell{border-radius:12px;padding:1.25rem}
+.swot-s{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.25)}
+.swot-w{background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.25)}
+.swot-o{background:rgba(77,166,255,0.1);border:1px solid rgba(77,166,255,0.25)}
+.swot-t{background:rgba(240,184,72,0.1);border:1px solid rgba(240,184,72,0.25)}
+
+/* Gantt */
+.gantt-bar{height:28px;border-radius:6px;position:relative;display:flex;align-items:center;padding:0 8px;font-size:0.7rem;color:#fff;white-space:nowrap;overflow:hidden}
+
+/* Funnel label */
+.funnel-stage{display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem}
+.funnel-bar{height:40px;border-radius:8px;display:flex;align-items:center;padding-left:1rem;font-weight:500;color:#fff;font-size:0.85rem}
+
+/* Table */
+.data-table{width:100%;border-collapse:separate;border-spacing:0}
+.data-table thead th{background:rgba(77,166,255,0.15);color:#4DA6FF;font-weight:600;padding:0.75rem 1rem;text-align:left;font-size:0.8rem;text-transform:uppercase;letter-spacing:1px}
+.data-table thead th:first-child{border-radius:10px 0 0 0}
+.data-table thead th:last-child{border-radius:0 10px 0 0}
+.data-table tbody td{padding:0.65rem 1rem;border-bottom:1px solid rgba(77,166,255,0.08);font-size:0.85rem}
+.data-table tbody tr:hover td{background:rgba(77,166,255,0.05)}
+.data-table tfoot td{padding:0.75rem 1rem;font-weight:700;color:#4DA6FF;border-top:2px solid rgba(77,166,255,0.3)}
+
+/* Animate-in */
+.anim-in{opacity:0;transform:translateY(40px)}
+
+/* Tag */
+.tag{display:inline-block;padding:0.2rem 0.75rem;border-radius:20px;font-size:0.75rem;font-weight:500}
+
+/* Timeline */
+.timeline-item{position:relative;padding-left:2rem;padding-bottom:1.5rem;border-left:2px solid rgba(77,166,255,0.2)}
+.timeline-item::before{content:'';position:absolute;left:-6px;top:4px;width:10px;height:10px;border-radius:50%;background:#4DA6FF;border:2px solid #0a1a2e}
+.timeline-item:last-child{border-left-color:transparent}
+
+@media(max-width:768px){
+  .kpi-value{font-size:1.5rem}
+  .hero-title{font-size:2.5rem!important}
+}
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div id="progress"></div>
+
+<!-- ============================================ -->
+<!-- SECTION 0: HERO -->
+<!-- ============================================ -->
+<section class="hero-bg min-h-screen flex items-center justify-center relative" id="hero">
+  <div class="cloud-layer" id="cloudLayer"></div>
+  <div class="max-w-5xl mx-auto px-6 text-center relative z-10 py-20">
+    <div class="inline-block mb-6 px-4 py-1.5 rounded-full border border-sky-blue/30 bg-sky-blue/10">
+      <span class="font-mono text-sky-blue text-sm tracking-widest">XINLIAN GENERAL AVIATION · 2026</span>
+    </div>
+    <h1 class="hero-title text-5xl md:text-7xl font-serif font-900 text-white leading-tight mb-6" style="text-shadow:0 4px 40px rgba(77,166,255,0.3)">
+      五一小长假<br><span class="text-sky-blue">媒体运营推广</span><br>执行方案
+    </h1>
+    <p class="text-lg md:text-xl text-ice/70 max-w-2xl mx-auto mb-10 leading-relaxed">
+      杭州新联通用航空有限公司 · 直升机空中游览<br>
+      <span class="text-sky-blue/80">目标：成交100单 · 约300人次 · 销售额25万元+</span>
+    </p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+      <div class="kpi-card"><div class="kpi-value">100</div><div class="kpi-label">目标成交单数</div></div>
+      <div class="kpi-card"><div class="kpi-value">300</div><div class="kpi-label">服务人次（3人/单）</div></div>
+      <div class="kpi-card"><div class="kpi-value">~27<span class="text-lg">万</span></div><div class="kpi-label">预估销售额</div></div>
+      <div class="kpi-card"><div class="kpi-value">8<span class="text-lg">天</span></div><div class="kpi-label">黄金销售窗口</div></div>
+    </div>
+    <div class="mt-12 text-ice/40 text-sm font-mono tracking-wider">
+      执行周期：2026.04.15 — 2026.05.05 &nbsp;|&nbsp; 市场部出品
+    </div>
+    <div class="mt-8 animate-bounce text-sky-blue/50">
+      <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 1: EXECUTIVE SUMMARY -->
+<!-- ============================================ -->
+<section class="py-20 px-6 relative" id="summary">
+  <div class="max-w-5xl mx-auto">
+    <div class="anim-in">
+      <div class="section-num mb-3">01 / EXECUTIVE SUMMARY</div>
+      <h2 class="section-title text-3xl md:text-4xl text-white mb-8">方案概述</h2>
+    </div>
+    <div class="anim-in glass p-8 md:p-10 mb-8">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-sky-blue font-semibold mb-3 text-lg">项目背景</h3>
+          <p class="text-sm leading-relaxed text-ice/70">2025年五一，杭州接待游客<strong class="text-white">1613万人次</strong>，旅游消费<strong class="text-white">113.6亿元</strong>。低空观光成为现象级新消费，湘湖直升机基地"一票难求"。2026年杭州春假（4.28-4.30）与五一假期无缝衔接，形成<strong class="text-white">长达8天的黄金窗口</strong>，为直升机空中游览产品提供了前所未有的市场机遇。</p>
+        </div>
+        <div>
+          <h3 class="text-sky-blue font-semibold mb-3 text-lg">核心策略</h3>
+          <p class="text-sm leading-relaxed text-ice/70">以<strong class="text-white">"抖音引爆+小红书种草"</strong>双平台联动为核心，通过预热期（4.15-4.27）内容蓄水与KOL合作实现认知破圈，爆发期（4.28-5.5）以信息流投放+促销组合拳驱动即时转化，辅以私域沉淀实现<strong class="text-white">流量-咨询-成交</strong>的完整闭环。</p>
+        </div>
+        <div>
+          <h3 class="text-sky-blue font-semibold mb-3 text-lg">预期成果</h3>
+          <p class="text-sm leading-relaxed text-ice/70">全周期实现<strong class="text-white">总曝光量300万+</strong>，有效咨询<strong class="text-white">500+条</strong>，最终达成<strong class="text-white">100单成交（约300人次）、26-27万元销售额</strong>的核心目标。同步完成官号粉丝增长<strong class="text-white">3000+</strong>，沉淀私域用户<strong class="text-white">800+</strong>，为后续暑期旺季奠定流量基础。</p>
+        </div>
+      </div>
+    </div>
+    <!-- Product Overview -->
+    <div class="anim-in grid md:grid-cols-3 gap-6">
+      <div class="glass p-6 text-center border-t-2 border-t-mint">
+        <div class="text-mint text-xs font-mono tracking-wider mb-2">A 航线 · 城市巡礼</div>
+        <div class="text-3xl font-mono font-bold text-white mb-1">¥680<span class="text-base font-normal text-ice/50">/人</span></div>
+        <div class="text-ice/50 text-sm mb-3">约5分钟飞行</div>
+        <div class="tag bg-mint/15 text-mint">入门体验 · 高频引流款</div>
+      </div>
+      <div class="glass p-6 text-center border-t-2 border-t-sky-blue relative overflow-hidden">
+        <div class="absolute top-2 right-2 bg-sky-blue text-white text-xs px-2 py-0.5 rounded-full">推荐</div>
+        <div class="text-sky-blue text-xs font-mono tracking-wider mb-2">B 航线 · 西湖全景</div>
+        <div class="text-3xl font-mono font-bold text-white mb-1">¥1,080<span class="text-base font-normal text-ice/50">/人</span></div>
+        <div class="text-ice/50 text-sm mb-3">约10分钟飞行</div>
+        <div class="tag bg-sky-blue/15 text-sky-blue">性价比之选 · 利润主力款</div>
+      </div>
+      <div class="glass p-6 text-center border-t-2 border-t-gold">
+        <div class="text-gold text-xs font-mono tracking-wider mb-2">C 航线 · 尊享之旅</div>
+        <div class="text-3xl font-mono font-bold text-white mb-1">¥1,980<span class="text-base font-normal text-ice/50">/人</span></div>
+        <div class="text-ice/50 text-sm mb-3">约18分钟飞行</div>
+        <div class="tag bg-gold/15 text-gold">高端深度 · 利润旗舰款</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 2: MARKET ANALYSIS -->
+<!-- ============================================ -->
+<section class="py-20 px-6" id="market">
+  <div class="max-w-5xl mx-auto">
+    <div class="anim-in">
+      <div class="section-num mb-3">02 / MARKET ANALYSIS</div>
+      <h2 class="section-title text-3xl md:text-4xl text-white mb-4">市场环境分析</h2>
+      <p class="text-ice/60 mb-10 max-w-2xl">基于杭州文旅局、民航局及行业数据，全面扫描五一旅游市场与低空经济赛道，为策略制定提供数据底座。</p>
+    </div>
+
+    <!-- Chart: Hangzhou Tourism YoY -->
+    <div class="anim-in glass p-6 md:p-8 mb-8">
+      <h3 class="text-white font-semibold text-lg mb-1">杭州五一旅游核心指标对比</h3>
+      <p class="text-ice/50 text-sm mb-4">2024 vs 2025年，杭州五一旅游各项核心数据全面增长</p>
+      <div id="chartTourism" style="width:100%;height:380px"></div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 mb-8">
+      <!-- Chart: Low-Alt Economy -->
+      <div class="anim-in glass p-6">
+        <h3 class="text-white font-semibold mb-1">中国低空经济市场规模</h3>
+        <p class="text-ice/50 text-xs mb-4">2022-2026E · 单位：亿元</p>
+        <div id="chartLowAlt" style="width:100%;height:300px"></div>
+      </div>
+      <!-- Chart: Price Comparison -->
+      <div class="anim-in glass p-6">
+        <h3 class="text-white font-semibold mb-1">竞品价格对标分析</h3>
+        <p class="text-ice/50 text-xs mb-4">杭州及周边直升机观光产品定价（元/人）</p>
+        <div id="chartPrice" style="width:100%;height:300px"></div>
+      </div>
+    </div>
+
+    <!-- SWOT -->
+    <div class="anim-in">
+      <h3 class="text-white font-semibold text-lg mb-4">SWOT 战略分析</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="swot-cell swot-s">
+          <div class="text-mint font-bold text-sm mb-2">S · 优势 STRENGTHS</div>
+          <ul class="text-sm text-ice/70 space-y-1 list-disc list-inside">
+            <li>自有直升机资质与航线资源，运营成本可控</li>
+            <li>3条差异化航线覆盖 680-1980元价格带</li>
+            <li>杭州作为eVTOL试点城市，政策利好明确</li>
+            <li>已有抖音+小红书双平台运营基础</li>
+          </ul>
+        </div>
+        <div class="swot-cell swot-w">
+          <div class="text-coral font-bold text-sm mb-2">W · 劣势 WEAKNESSES</div>
+          <ul class="text-sm text-ice/70 space-y-1 list-disc list-inside">
+            <li>官号内容产出频率低、质量参差</li>
+            <li>品牌知名度有限，缺乏用户心智占领</li>
+            <li>入门价680元高于竞品99-198元引流款</li>
+            <li>天气依赖性强，取消率影响用户体验</li>
+          </ul>
+        </div>
+        <div class="swot-cell swot-o">
+          <div class="text-sky-blue font-bold text-sm mb-2">O · 机会 OPPORTUNITIES</div>
+          <ul class="text-sm text-ice/70 space-y-1 list-disc list-inside">
+            <li>春假+五一形成8天超长窗口，家庭客群井喷</li>
+            <li>2025年杭州五一游客1613万，低空游"一票难求"</li>
+            <li>低空经济年增28%+，政策与媒体高度聚焦</li>
+            <li>浙江多城同期春假，区域客源半径扩大</li>
+          </ul>
+        </div>
+        <div class="swot-cell swot-t">
+          <div class="text-gold font-bold text-sm mb-2">T · 威胁 THREATS</div>
+          <ul class="text-sm text-ice/70 space-y-1 list-disc list-inside">
+            <li>湘湖基地等竞品已形成品牌认知与OTA流量</li>
+            <li>仅10%低空旅游项目实现盈利，行业洗牌在即</li>
+            <li>五一期间流量成本上涨，CPM可能溢价30-50%</li>
+            <li>连续阴雨天气可能导致大面积退单</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 3: TARGET AUDIENCE -->
+<!-- ============================================ -->
+<section class="py-20 px-6" id="audience">
+  <div class="max-w-5xl mx-auto">
+    <div class="anim-in">
+      <div class="section-num mb-3">03 / TARGET AUDIENCE</div>
+      <h2 class="section-title text-3xl md:text-4xl text-white mb-4">目标人群画像</h2>
+      <p class="text-ice/60 mb-10 max-w-2xl">基于小红书用户画像、低空旅游消费调研及杭州旅游客群分析，锁定三大核心人群。</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 mb-8">
+      <div class="anim-in glass p-6">
+        <h3 class="text-white font-semibold mb-1">核心人群结构</h3>
+        <p class="text-ice/50 text-xs mb-4">按消费场景与动机划分</p>
+        <div id="chartAudience" style="width:100%;height:320px"></div>
+      </div>
+      <div class="anim-in glass p-6">
+        <h3 class="text-white font-semibold mb-1">触媒偏好与转化路径</h3>
+        <p class="text-ice/50 text-xs mb-4">不同人群的媒介习惯与决策因素</p>
+        <div id="chartMedia" style="width:100%;height:320px"></div>
+      </div>
+    </div>
+    <!-- Persona cards -->
+    <div class="anim-in grid md:grid-cols-3 gap-6">
+      <div class="glass p-6">
+        <div class="text-2xl mb-2">👩‍❤️‍👨</div>
+        <div class="text-sky-blue font-semibold text-sm mb-1">都市情侣/闺蜜 · 占比40%</div>
+        <div class="text-xs text-ice/50 mb-3">22-32岁 · 月入1.2万+ · 小红书重度用户</div>
+        <p class="text-sm text-ice/70 leading-relaxed">追求仪式感与社交货币，拍照出片是核心驱动力。偏好B航线（10分钟，性价比高且体验完整），容易被"地面vs空中"对比内容种草。</p>
+        <div class="mt-3 flex flex-wrap gap-1">
+          <span class="tag bg-sky-blue/15 text-sky-blue">小红书</span>
+          <span class="tag bg-sky-blue/15 text-sky-blue">出片打卡</span>
+          <span class="tag bg-sky-blue/15 text-sky-blue">情侣纪念</span>
+        </div>
+      </div>
+      <div class="glass p-6">
+        <div class="text-2xl mb-2">👨‍👩‍👧‍👦</div>
+        <div class="text-mint font-semibold text-sm mb-1">亲子家庭 · 占比35%</div>
+        <div class="text-xs text-ice/50 mb-3">30-42岁 · 家庭月入2.5万+ · 抖音+大众点评</div>
+        <p class="text-sm text-ice/70 leading-relaxed">春假+五一带孩子出行，看重安全性与教育意义。偏好A航线（5分钟，低门槛让孩子首次体验飞行）或C航线（深度体验配合航空科普）。决策周期短，价格敏感度中等。</p>
+        <div class="mt-3 flex flex-wrap gap-1">
+          <span class="tag bg-mint/15 text-mint">抖音</span>
+          <span class="tag bg-mint/15 text-mint">亲子教育</span>
+          <span class="tag bg-mint/15 text-mint">春假遛娃</span>
+        </div>
+      </div>
+      <div class="glass p-6">
+        <div class="text-2xl mb-2">🧑‍💼</div>
+        <div class="text-gold font-semibold text-sm mb-1">品质旅行客 · 占比25%</div>
+        <div class="text-xs text-ice/50 mb-3">28-45岁 · 月入2万+ · OTA+抖音</div>
+        <p class="text-sm text-ice/70 leading-relaxed">外地来杭深度游客或本地高净值人群，追求独特体验和品质感。偏好C航线（18分钟旗舰体验）。更信赖KOL测评和专业内容，转化链路偏长但客单价高。</p>
+        <div class="mt-3 flex flex-wrap gap-1">
+          <span class="tag bg-gold/15 text-gold">小红书KOL</span>
+          <span class="tag bg-gold/15 text-gold">品质体验</span>
+          <span class="tag bg-gold/15 text-gold">旗舰航线</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 4: GOAL BREAKDOWN & ROI -->
+<!-- ============================================ -->
+<section class="py-20 px-6" id="roi">
+  <div class="max-w-5xl mx-auto">
+    <div class="anim-in">
+      <div class="section-num mb-3">04 / GOAL DECOMPOSITION & ROI</div>
+      <h2 class="section-title text-3xl md:text-4xl text-white mb-4">目标拆解与 ROI 测算</h2>
+      <p class="text-ice/60 mb-10 max-w-2xl">将100单（300人次）/约27万的总目标，拆解到航线组合、转化漏斗与媒体预算，确保每一分投入可追踪。</p>
+    </div>
+
+    <!-- Route mix -->
+    <div class="anim-in glass p-6 md:p-8 mb-8">
+      <h3 class="text-white font-semibold text-lg mb-4">航线组合方案 · 目标拆解</h3>
+      <div class="overflow-x-auto">
+        <table class="data-table">
+          <thead>
+            <tr><th>航线</th><th>客单价</th><th>每单收入<br><span style="font-weight:400;opacity:0.7">(3人起飞)</span></th><th>目标单数</th><th>服务人次</th><th>占比</th><th>预计销售额</th><th>策略定位</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="text-white font-medium">A 航线 · 5分钟</td><td>¥680/人</td><td class="font-mono">¥2,040</td><td class="text-white font-mono">65单</td><td class="font-mono">195人</td><td>65%</td><td class="text-mint font-mono">¥132,600</td><td>引流爆款·走量</td></tr>
+            <tr><td class="text-white font-medium">B 航线 · 10分钟</td><td>¥1,080/人</td><td class="font-mono">¥3,240</td><td class="text-white font-mono">27单</td><td class="font-mono">81人</td><td>27%</td><td class="text-sky-blue font-mono">¥87,480</td><td>利润主力·主推</td></tr>
+            <tr><td class="text-white font-medium">C 航线 · 18分钟</td><td>¥1,980/人</td><td class="font-mono">¥5,940</td><td class="text-white font-mono">8单</td><td class="font-mono">24人</td><td>8%</td><td class="text-gold font-mono">¥47,520</td><td>高端旗舰·提升利润</td></tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3">合计</td>
+              <td class="font-mono">100单</td>
+              <td class="font-mono">300人</td>
+              <td>100%</td>
+              <td class="font-mono" style="color:#34D399">¥267,600</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="mt-4 p-4 bg-sky-blue/10 rounded-lg border border-sky-blue/20">
+        <p class="text-sm text-ice/80"><strong class="text-sky-blue">计算逻辑：</strong>直升机空中游览<strong class="text-white">3人起飞</strong>，每单即3位乘客同时购票。100单 = 300人次。以A航线为主力引流款（65单），搭配B航线走利润（27单）和少量C航线旗舰体验（8单），总销售额约<strong class="text-white">26.8万元</strong>。若A航线占比进一步提高，销售额将落在<strong class="text-white">25-27万元区间</strong>，符合目标预期。</p>
+      </div>
+    </div>
+
+    <!-- Funnel -->
+    <div class="anim-in glass p-6 md:p-8 mb-8">
+      <h3 class="text-white font-semibold text-lg mb-6">转化漏斗模型</h3>
+      <div class="max-w-2xl mx-auto">
+        <div class="funnel-stage">
+          <div class="funnel-bar w-full" style="background:linear-gradient(90deg,#4DA6FF,#2a7ad8)">曝光量 · 3,000,000+</div>
+        </div>
+        <div class="flex justify-center text-ice/30 text-xs mb-1 font-mono">▼ CTR 2.5%</div>
+        <div class="funnel-stage">
+          <div class="funnel-bar" style="width:75%;background:linear-gradient(90deg,#34D399,#1fa87a)">点击/互动 · 75,000</div>
+        </div>
+        <div class="flex justify-center text-ice/30 text-xs mb-1 font-mono">▼ 咨询率 0.7%</div>
+        <div class="funnel-stage">
+          <div class="funnel-bar" style="width:45%;background:linear-gradient(90deg,#F0B848,#d4971f)">有效咨询 · 525</div>
+        </div>
+        <div class="flex justify-center text-ice/30 text-xs mb-1 font-mono">▼ 转化率 19%</div>
+        <div class="funnel-stage">
+          <div class="funnel-bar" style="width:20%;background:linear-gradient(90deg,#FF6B6B,#d44)">成交订单 · 100单</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROI Table -->
+    <div class="anim-in glass p-6 md:p-8">
+      <h3 class="text-white font-semibold text-lg mb-4">媒体投放 ROI 测算</h3>
+      <div id="chartROI" style="width:100%;height:340px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 5: CONTENT STRATEGY -->
+<!-- ============================================ -->
+<section class="py-20 px-6" id="content">
+  <div class="max-w-5xl mx-auto">
+    <div class="anim-in">
+      <div class="section-num mb-3">05 / CONTENT STRATEGY</div>
+      <h2 class="section-title text-3xl md:text-4xl text-white mb-4">内容策略</h2>
+      <p class="text-ice/60 mb-10 max-w-2xl">分平台定制内容矩阵，分阶段节奏推进，实现"种草-拔草"全链路闭环。</p>
+    </div>
+
+    <!-- Phase overview -->
+    <div class="anim-in glass p-6 md:p-8 mb-8">
+      <h3 class="text-white font-semibold text-lg mb-6">两阶段节奏框架</h3>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="p-5 rounded-xl bg-sky-blue/8 border border-sky-blue/15">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-full bg-sky-blue/20 flex items-center justify-center text-sky-blue font-mono font-bold text-sm">P1</div>
+            <div>
+              <div class="text-white font-semibold">预热蓄水期</div>
+              <div class="text-ice/50 text-xs font-mono">4.15 — 4.27 · 13天</div>
+            </div>
+          </div>
+          <ul class="text-sm text-ice/70 space-y-1.5 list-disc list-inside">
+            <li>官号内容密集发布，日更1-2条，建立内容资产</li>
+            <li>KOL/KOC种草合作，3-5位达人体验出片</li>
+            <li>小红书关键词SEO布局，抢占搜索流量</li>
+            <li>早鸟预售上线，锁定意向用户</li>
+            <li>悬念式内容发布："杭州隐藏的天际线玩法"</li>
+          </ul>
+        </div>
+        <div class="p-5 rounded-xl bg-gold/8 border border-gold/15">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center text-gold font-mono font-bold text-sm">P2</div>
+            <div>
+              <div class="text-white font-semibold">爆发转化期</div>
+              <div class="text-ice/50 text-xs font-mono">4.28 — 5.05 · 8天</div>
+            </div>
+          </div>
+          <ul class="text-sm text-ice/70 space-y-1.5 list-disc list-inside">
+            <li>信息流广告全量投放，精准触达目标人群</li>
+            <li>抖音直播：起飞现场实况 + 限时折扣</li>
+            <li>用户UGC内容征集："晒飞行照，返现50元"</li>
+            <li>限时促销组合拳：春假家庭套餐、拼团立减</li>
+            <li>私信/评论即时响应，缩短决策链路</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Douyin Strategy -->
+    <div class="anim-in glass p-6 md:p-8 mb-8">
+      <h3 class="text-white font-semibold text-lg mb-2">🎬 抖音内容矩阵</h3>
+      <p class="text-ice/50 text-sm mb-6">短视频15-60秒为核心，POI挂载+团购链接驱动即时转化</p>
+      <div class="overflow-x-auto">
+        <table class="data-table">
+          <thead><tr><th>内容类型</th><th>占比</th><th>选题方向</th><th>发布频率</th><th>预期效果</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="text-white font-medium">第一视角航拍</td><td>30%</td>
+              <td class="text-sm">"坐在直升机上看西湖是什么体验"<br>"杭州人都不知道的空中视角"</td>
+              <td>预热期3条/周<br>爆发期1条/天</td>
+              <td class="text-mint">高完播率·强种草</td>
+            </tr>
+            <tr>
+              <td class="text-white font-medium">地面vs空中对比</td><td>25%</td>
+              <td class="text-sm">"地面挤人人人，不如飞上天"<br>"同一个景点，两个世界"</td>
+              <td>预热期2条/周<br>爆发期5条</td>
+              <td class="text-sky-blue">强反差·高分享</td>
+            </tr>
+            <tr>
+              <td class="text-white font-medium">价格揭秘/Vlog</td><td>20%</td>
+              <td class="text-sm">"杭州坐直升机到底多少钱？"<br>"680元体验5分钟值不值"</td>
+              <td>预热期2条<br>爆发期3条</td>
+              <td class="text-gold">破除高价认知</td>
+            </tr>
+            <tr>
+              <td class="text-white font-medium">亲子/情侣记录</td><td>15%</td>
+              <td class="text-sm">"带5岁女儿第一次坐直升机"<br>"送女朋友上天当生日礼物"</td>
+              <td>爆发期为主</td>
+              <td class="text-coral">情感共鸣·破圈</td>
+            </tr>
+            <tr>
+              <td class="text-white font-medium">直播/实时互动</td><td>10%</td>
+              <td class="text-sm">起飞现场直播、飞行员互动<br>限时秒杀、评论抽奖</td>
+              <td>爆发期2-3场</td>
+              <td class="text-mint">即时转化·氛围感</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Xiaohongshu Strategy -->
+    <div class="anim-in glass p-6 md:p-8 mb-8">
+      <h3 class="text-white font-semibold text-lg mb-2">📕 小红书内容矩阵</h3>
+      <p class="text-ice/50 text-sm mb-6">图文+视频笔记并重，关键词SEO驱动长尾搜索流量</p>
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <h4 class="text-sky-blue font-semibold text-sm mb-3">核心关键词布局</h4>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag bg-sky-blue/15 text-sky-blue">杭州直升机</span>
+            <span class="tag bg-sky-blue/15 text-sky-blue">杭州五一攻略</span>
+            <span class="tag bg-sky-blue/15 text-sky-blue">西湖空中游览</span>
+            <span class="tag bg-sky-blue/15 text-sky-blue">杭州小众体验</span>
+            <span class="tag bg-mint/15 text-mint">亲子飞行体验</span>
+            <span class="tag bg-mint/15 text-mint">春假遛娃杭州</span>
+            <span class="tag bg-mint/15 text-mint">杭州拍照打卡</span>
+            <span class="tag bg-gold/15 text-gold">低空旅游</span>
+            <span class="tag bg-gold/15 text-gold">直升机多少钱</span>
+            <span class="tag bg-gold/15 text-gold">情侣浪漫体验</span>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-sky-blue font-semibold text-sm mb-3">笔记类型配比</h4>
+          <div id="chartNoteType" style="width:100%;height:200px"></div>
+        </div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="data-table">
+          <thead><tr><th>笔记类型</th><th>标题模板</th><th>内容要点</th><th>发布策略</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="text-white font-medium">攻略合集</td>
+              <td class="text-sm">"杭州五一|直升机游览超全攻略🚁"</td>
+              <td class="text-sm">3条航线详解+价格+预约方式+穿搭建议</td>
+              <td>预热期发2篇，置顶</td>
+            </tr>
+            <tr>
+              <td class="text-white font-medium">体验Vlog</td>
+              <td class="text-sm">"人生第一次坐直升机看西湖！"</td>
+              <td class="text-sm">真实体验全流程，强调安全感和惊喜感</td>
+              <td>KOL/KOC出品为主</td>
+            </tr>
+            <tr>
+              <td class="text-white font-medium">出片教程</td>
+              <td class="text-sm">"直升机上怎么拍出大片感📸"</td>
+              <td class="text-sm">机位选择、穿搭配色、后期调色参数</td>
+              <td>预热期1篇，长尾</td>
+            </tr>
+            <tr>
+              <td class="text-white font-medium">价格透明帖</td>
+              <td class="text-sm">"杭州坐直升机要花多少？详细拆解💰"</td>
+              <td class="text-sm">三档价格对比，强调680元入门门槛不高</td>
+              <td>预热期1篇，投流加推</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- KOL Strategy -->
+    <div class="anim-in glass p-6 md:p-8">
+      <h3 class="text-white font-semibold text-lg mb-4">KOL / KOC 合作策略</h3>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-4 rounded-xl bg-gold/8 border border-gold/15">
+          <div class="text-gold font-semibold text-sm mb-2">腰部KOL · 2位</div>
+          <div class="text-xs text-ice/50 mb-2">粉丝10-50万 · 旅游/生活方式类</div>
+          <ul class="text-sm text-ice/70 space-y-1 list-disc list-inside">
+            <li>免费体验C航线 + 置换合作</li>
+            <li>输出1条视频+1篇图文</li>
+            <li>预算：约5,000-8,000元/位</li>
+          </ul>
+        </div>
+        <div class="p-4 rounded-xl bg-sky-blue/8 border border-sky-blue/15">
+          <div class="text-sky-blue font-semibold text-sm mb-2">KOC素人 · 5-8位</div>
+          <div class="text-xs text-ice/50 mb-2">粉丝1-5万 · 本地生活/亲子/情侣</div>
+          <ul class="text-sm text-ice/70 space-y-1 list-disc list-inside">
+            <li>免费体验A/B航线 + 小额报酬</li>
+            <li>输出1条小红书笔记或抖音短视频</li>
+            <li>预算：约1,000-2,000元/位</li>
+          </ul>
+        </div>
+        <div class="p-4 rounded-xl bg-mint/8 border border-mint/15">
+          <div class="text-mint font-semibold text-sm mb-2">员工/朋友素材 · 3-5位</div>
+          <div class="text-xs text-ice/50 mb-2">真实用户视角，零成本或低成本</div>
+          <ul class="text-sm text-ice/70 space-y-1 list-disc list-inside">
+            <li>提供拍摄模板和脚本指导</li>
+            <li>公司账号转载二创</li>
+            <li>预算：免费体验名额</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 6: GANTT TIMELINE -->
+<!-- ============================================ -->
+<section class="py-20 px-6" id="gantt">
+  <div class="max-w-5xl mx-auto">
+    <div class="anim-in">
+      <div class="section-num mb-3">06 / EXECUTION TIMELINE</div>
+      <h2 class="section-title text-3xl md:text-4xl text-white mb-4">媒体排期甘特图</h2>
+      <p class="text-ice/60 mb-10 max-w-2xl">4月15日至5月5日共21天，分预热蓄水期与爆发转化期，精确到天的执行排期。</p>
+    </div>
+    <div class="anim-in glass p-6 md:p-8 overflow-x-auto">
+      <div id="chartGantt" style="width:100%;height:480px;min-width:700px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 7: PROMOTION & CONVERSION -->
+<!-- ============================================ -->
+<section class="py-20 px-6" id="promo">
+  <div class="max-w-5xl mx-auto">
+    <div class="anim-in">
+      <div class="section-num mb-3">07 / PROMOTION & CONVERSION</div>
+      <h2 class="section-title text-3xl md:text-4xl text-white mb-4">促销与转化策略</h2>
+      <p class="text-ice/60 mb-10 max-w-2xl">以限时优惠驱动紧迫感，以私域沉淀提升复购与转介绍，构建完整转化闭环。</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 mb-8">
+      <div class="anim-in glass p-6">
+        <h3 class="text-white font-semibold text-lg mb-4">促销活动矩阵</h3>
+        <div class="space-y-4">
+          <div class="p-4 rounded-lg bg-sky-blue/8 border border-sky-blue/15">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-sky-blue font-semibold text-sm">早鸟预售</span>
+              <span class="text-xs font-mono text-ice/50">4.15-4.27</span>
+            </div>
+            <p class="text-sm text-ice/70">A航线<strong class="text-white">580元</strong>（省100元），B航线<strong class="text-white">980元</strong>（省100元），C航线<strong class="text-white">1,780元</strong>（省200元）。限量30组，营造稀缺感。</p>
+          </div>
+          <div class="p-4 rounded-lg bg-mint/8 border border-mint/15">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-mint font-semibold text-sm">春假亲子套餐</span>
+              <span class="text-xs font-mono text-ice/50">4.28-4.30</span>
+            </div>
+            <p class="text-sm text-ice/70">1大1小A航线组合<strong class="text-white">1,180元</strong>（省180元），赠航空科普体验证书一份。针对春假家庭客群。</p>
+          </div>
+          <div class="p-4 rounded-lg bg-gold/8 border border-gold/15">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-gold font-semibold text-sm">闺蜜/情侣拼团</span>
+              <span class="text-xs font-mono text-ice/50">全周期</span>
+            </div>
+            <p class="text-sm text-ice/70">2人同行B航线<strong class="text-white">1,980元</strong>（人均990元，省90元/人），赠精修航拍合照2张。</p>
+          </div>
+          <div class="p-4 rounded-lg bg-coral/8 border border-coral/15">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-coral font-semibold text-sm">五一限时秒杀</span>
+              <span class="text-xs font-mono text-ice/50">5.1-5.3 每天11:00</span>
+            </div>
+            <p class="text-sm text-ice/70">每日限<strong class="text-white">5个名额</strong>，A航线<strong class="text-white">499元</strong>秒杀价。抖音直播间专属，引爆直播间人气。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="anim-in glass p-6">
+        <h3 class="text-white font-semibold text-lg mb-4">私域引流与转化闭环</h3>
+        <div class="space-y-6">
+          <div>
+            <div class="text-sky-blue font-semibold text-sm mb-2">1. 流量入口</div>
+            <p class="text-sm text-ice/70">抖音主页挂载团购链接 + 评论区置顶微信引导<br>小红书笔记底部引导私信获取"专属预约通道"<br>短视频评论区关键词自动回复</p>
+          </div>
+          <div>
+            <div class="text-mint font-semibold text-sm mb-2">2. 私域承接</div>
+            <p class="text-sm text-ice/70">企业微信客服号"新联飞行顾问"一对一服务<br>朋友圈每日1条飞行现场实况 + 剩余名额播报<br>社群运营：拉新用户入"新联飞友群"，发送天气预报与排班信息</p>
+          </div>
+          <div>
+            <div class="text-gold font-semibold text-sm mb-2">3. 转化促进</div>
+            <p class="text-sm text-ice/70">限时优惠倒计时：距离涨价还有XX小时<br>已购用户好评截图实时分享<br>犹豫客户48小时跟进，赠送航拍电子相框模板</p>
+          </div>
+          <div>
+            <div class="text-coral font-semibold text-sm mb-2">4. 复购裂变</div>
+            <p class="text-sm text-ice/70">飞行体验后即刻引导好评 + 发朋友圈<br>"老带新"奖励：推荐1人成交返现<strong class="text-white">50元</strong><br>体验后赠送"暑期回购9折券"，沉淀长期价值</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 8: RISK MITIGATION -->
+<!-- ============================================ -->
+<section class="py-20 px-6" id="risk">
+  <div class="max-w-5xl mx-auto">
+    <div class="anim-in">
+      <div class="section-num mb-3">08 / RISK MITIGATION</div>
+      <h2 class="section-title text-3xl md:text-4xl text-white mb-4">风险预案</h2>
+      <p class="text-ice/60 mb-10 max-w-2xl">识别四大核心风险，逐一制定应急响应方案，确保目标达成有保障。</p>
+    </div>
+    <div class="anim-in grid md:grid-cols-2 gap-6">
+      <div class="glass p-6 border-l-4 border-l-coral">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-coral font-semibold">⛈️ 天气风险</span>
+          <span class="tag bg-coral/15 text-coral">高概率</span>
+        </div>
+        <p class="text-sm text-ice/70 mb-3">杭州4-5月降水概率约40%，连续阴雨可能导致航班取消。</p>
+        <div class="text-sm text-ice/80">
+          <strong class="text-white">应对：</strong>
+          <ul class="list-disc list-inside mt-1 space-y-1">
+            <li>提前72小时监测气象，主动通知预约客户调整时段</li>
+            <li>推出"风雨无忧"承诺：天气取消全额退款或免费改期</li>
+            <li>雨天备用内容：发布"飞行员的一天"幕后故事，维持内容热度</li>
+            <li>雨后集中排飞，延长每日运营时段至18:30</li>
+          </ul>
+        </div>
+      </div>
+      <div class="glass p-6 border-l-4 border-l-gold">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-gold font-semibold">📉 流量不达预期</span>
+          <span class="tag bg-gold/15 text-gold">中概率</span>
+        </div>
+        <p class="text-sm text-ice/70 mb-3">五一期间竞争激烈，流量成本上涨30-50%，自然流量可能不足。</p>
+        <div class="text-sm text-ice/80">
+          <strong class="text-white">应对：</strong>
+          <ul class="list-disc list-inside mt-1 space-y-1">
+            <li>预留20%弹性预算（约6,000元）用于追加投放</li>
+            <li>4月25日复盘预热期数据，低于预期则加大投流力度</li>
+            <li>启动"B计划"：联系OTA平台（美团/大众点评）紧急上架</li>
+            <li>发动员工个人号矩阵发布，拓展免费流量渠道</li>
+          </ul>
+        </div>
+      </div>
+      <div class="glass p-6 border-l-4 border-l-sky-blue">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-sky-blue font-semibold">🔧 运营接待能力瓶颈</span>
+          <span class="tag bg-sky-blue/15 text-sky-blue">中概率</span>
+        </div>
+        <p class="text-sm text-ice/70 mb-3">爆发期订单集中涌入，客服响应和排飞调度可能跟不上。</p>
+        <div class="text-sm text-ice/80">
+          <strong class="text-white">应对：</strong>
+          <ul class="list-disc list-inside mt-1 space-y-1">
+            <li>爆发期增配2名临时客服，确保私信5分钟内响应</li>
+            <li>制作标准化FAQ话术库，减少客服培训成本</li>
+            <li>提前规划排飞时刻表，每日最大接待量提前公示</li>
+            <li>高峰时段开放加价"优先起飞"选项</li>
+          </ul>
+        </div>
+      </div>
+      <div class="glass p-6 border-l-4 border-l-mint">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-mint font-semibold">⚠️ 舆情与安全风险</span>
+          <span class="tag bg-mint/15 text-mint">低概率</span>
+        </div>
+        <p class="text-sm text-ice/70 mb-3">低空旅游公众安全认知仍有顾虑，负面事件可能引发退订潮。</p>
+        <div class="text-sm text-ice/80">
+          <strong class="text-white">应对：</strong>
+          <ul class="list-disc list-inside mt-1 space-y-1">
+            <li>所有宣传素材强调"持证运营""专业机组""保险全覆盖"</li>
+            <li>安排舆情监测，发现负面评论1小时内响应</li>
+            <li>准备安全说明模板，遇突发事件快速公关声明</li>
+            <li>邀请本地媒体参观基地，建立正面舆论背书</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 9: BUDGET -->
+<!-- ============================================ -->
+<section class="py-20 px-6" id="budget">
+  <div class="max-w-5xl mx-auto">
+    <div class="anim-in">
+      <div class="section-num mb-3">09 / BUDGET OVERVIEW</div>
+      <h2 class="section-title text-3xl md:text-4xl text-white mb-4">预算总表</h2>
+      <p class="text-ice/60 mb-10 max-w-2xl">总预算控制在销售额目标的11%以内，确保ROI可持续。</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-8">
+      <div class="anim-in kpi-card">
+        <div class="kpi-value">2.95<span class="text-lg">万</span></div>
+        <div class="kpi-label">总营销预算</div>
+      </div>
+      <div class="anim-in kpi-card">
+        <div class="kpi-value" style="color:#34D399">9.1<span class="text-lg">:1</span></div>
+        <div class="kpi-label">目标ROI</div>
+      </div>
+      <div class="anim-in kpi-card">
+        <div class="kpi-value" style="color:#F0B848">11.0<span class="text-lg">%</span></div>
+        <div class="kpi-label">营销费用率</div>
+      </div>
+    </div>
+
+    <div class="anim-in glass p-6 md:p-8 mb-8">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-white font-semibold text-lg mb-4">分项预算明细</h3>
+          <div class="overflow-x-auto">
+            <table class="data-table">
+              <thead><tr><th>项目</th><th>明细</th><th>预算（元）</th></tr></thead>
+              <tbody>
+                <tr><td class="text-white font-medium">抖音信息流</td><td class="text-sm">DOU+投流 + 本地推</td><td class="font-mono text-sky-blue">8,000</td></tr>
+                <tr><td class="text-white font-medium">小红书投放</td><td class="text-sm">薯条推广 + 聚光平台</td><td class="font-mono text-sky-blue">5,000</td></tr>
+                <tr><td class="text-white font-medium">KOL合作</td><td class="text-sm">腰部KOL×2位</td><td class="font-mono text-sky-blue">6,000</td></tr>
+                <tr><td class="text-white font-medium">KOC合作</td><td class="text-sm">素人KOC×5-8位</td><td class="font-mono text-sky-blue">4,000</td></tr>
+                <tr><td class="text-white font-medium">内容制作</td><td class="text-sm">航拍素材拍摄+剪辑</td><td class="font-mono text-sky-blue">3,000</td></tr>
+                <tr><td class="text-white font-medium">促销补贴</td><td class="text-sm">早鸟折扣+秒杀让利</td><td class="font-mono text-sky-blue">2,000</td></tr>
+                <tr><td class="text-white font-medium">弹性预算</td><td class="text-sm">应急追投 / 临时需求</td><td class="font-mono text-sky-blue">1,500</td></tr>
+              </tbody>
+              <tfoot>
+                <tr><td colspan="2">总计</td><td class="font-mono">29,500</td></tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold text-lg mb-4">预算分配结构</h3>
+          <div id="chartBudget" style="width:100%;height:300px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="anim-in glass p-8 text-center border border-sky-blue/30 bg-gradient-to-br from-sky-blue/10 to-mint/5">
+      <h3 class="text-white font-serif text-2xl mb-3">方案总结</h3>
+      <p class="text-ice/70 text-sm max-w-2xl mx-auto mb-6 leading-relaxed">
+        本方案以<strong class="text-white">2.95万元</strong>营销预算撬动<strong class="text-white">约27万元</strong>销售目标（100单/300人次），ROI预期<strong class="text-sky-blue">9.1:1</strong>。通过"抖音爆发+小红书种草"双轮驱动，精准覆盖都市情侣、亲子家庭、品质旅行客三大人群，借助春假+五一8天黄金窗口，以A航线（65单）走量引流、B航线（27单）贡献利润、C航线（8单）拉高客单，实现从内容蓄水到集中转化的完整链路闭环。
+      </p>
+      <div class="inline-block px-6 py-2 rounded-full border border-sky-blue/40 text-sky-blue font-mono text-sm tracking-wider">
+        杭州新联通用航空 · 市场部 · 2026年4月
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="py-10 text-center text-ice/30 text-xs font-mono border-t border-ice/5">
+  <p>杭州新联通用航空有限公司 · 2026五一媒体运营推广执行方案 · CONFIDENTIAL</p>
+  <p class="mt-1">数据来源：杭州市文化广电旅游局、民航局、小红书商业数据、行业公开报告</p>
+</footer>
+
+<!-- ============================================ -->
+<!-- JAVASCRIPT -->
+<!-- ============================================ -->
+<script>
+// --- PROGRESS BAR ---
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width=pct+'%';
+});
+
+// --- GSAP ANIMATIONS ---
+gsap.registerPlugin(ScrollTrigger);
+
+// Cloud parallax
+gsap.to('#cloudLayer',{x:'-25%',ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+
+// Animate-in elements
+gsap.utils.toArray('.anim-in').forEach(el=>{
+  gsap.to(el,{opacity:1,y:0,duration:0.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});
+});
+
+// --- ECHARTS HELPERS ---
+const C={navy:'#1E3A5F',sky:'#4DA6FF',mint:'#34D399',gold:'#F0B848',coral:'#FF6B6B',ice:'#c8daf0',bg:'rgba(0,0,0,0)'};
+function initChart(id){const d=document.getElementById(id);if(!d)return null;const c=echarts.init(d,null,{renderer:'svg'});window.addEventListener('resize',()=>c.resize());return c;}
+const tooltipBase={backgroundColor:'rgba(15,36,64,0.9)',borderColor:'rgba(77,166,255,0.3)',textStyle:{color:'#c8daf0',fontFamily:'Noto Sans SC',fontSize:12},padding:[10,14]};
+
+// --- CHART: TOURISM COMPARISON ---
+(function(){
+const c=initChart('chartTourism');if(!c)return;
+c.setOption({
+  tooltip:{...tooltipBase,trigger:'axis'},
+  legend:{data:['2024年','2025年'],textStyle:{color:C.ice,fontFamily:'Noto Sans SC'},top:0,right:0},
+  grid:{left:'3%',right:'4%',bottom:'3%',top:'15%',containLabel:true},
+  xAxis:{type:'category',data:['总游客\n(万人次)','外地游客\n(万人次)','过夜游客\n(万人次)','旅游消费\n(亿元)','酒店入住率\n(%)'],axisLabel:{color:'#8ba8c8',fontSize:11,fontFamily:'Noto Sans SC'},axisLine:{lineStyle:{color:'rgba(77,166,255,0.15)'}},axisTick:{show:false}},
+  yAxis:{type:'value',show:false},
+  series:[
+    {name:'2024年',type:'bar',barWidth:'28%',data:[1051,709,161,107,70.2],itemStyle:{color:'rgba(77,166,255,0.25)',borderRadius:[6,6,0,0]},label:{show:true,position:'top',color:'#8ba8c8',fontSize:11,fontFamily:'JetBrains Mono'}},
+    {name:'2025年',type:'bar',barWidth:'28%',data:[1613,960,200,113.6,73],itemStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'#4DA6FF'},{offset:1,color:'#2a7ad8'}]},borderRadius:[6,6,0,0]},label:{show:true,position:'top',color:'#4DA6FF',fontSize:11,fontWeight:'bold',fontFamily:'JetBrains Mono'}}
+  ]
+});
+})();
+
+// --- CHART: LOW-ALT ECONOMY ---
+(function(){
+const c=initChart('chartLowAlt');if(!c)return;
+c.setOption({
+  tooltip:{...tooltipBase,trigger:'axis',formatter:p=>p[0].name+'年<br/>市场规模: <b style="color:#4DA6FF">'+p[0].value+'亿元</b>'},
+  grid:{left:'8%',right:'5%',bottom:'10%',top:'10%',containLabel:true},
+  xAxis:{type:'category',data:['2022','2023','2024','2025E','2026E'],axisLabel:{color:'#8ba8c8',fontFamily:'JetBrains Mono'},axisLine:{lineStyle:{color:'rgba(77,166,255,0.15)'}},axisTick:{show:false}},
+  yAxis:{type:'value',axisLabel:{color:'#8ba8c8',fontFamily:'JetBrains Mono',formatter:v=>v>=10000?(v/10000)+'万':v},splitLine:{lineStyle:{color:'rgba(77,166,255,0.08)'}},axisLine:{show:false}},
+  series:[{
+    type:'line',data:[3800,5059,6702,8519,10500],
+    smooth:true,symbol:'circle',symbolSize:8,
+    lineStyle:{width:3,color:C.sky},
+    itemStyle:{color:C.sky,borderWidth:2,borderColor:'#0a1a2e'},
+    areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'rgba(77,166,255,0.3)'},{offset:1,color:'rgba(77,166,255,0)'}]}},
+    markPoint:{data:[{type:'max',name:'2026E',label:{color:'#fff',fontSize:10,fontFamily:'JetBrains Mono'}}],itemStyle:{color:C.gold}},
+    label:{show:true,position:'top',color:C.ice,fontSize:10,fontFamily:'JetBrains Mono'}
+  }]
+});
+})();
+
+// --- CHART: PRICE COMPARISON ---
+(function(){
+const c=initChart('chartPrice');if(!c)return;
+c.setOption({
+  tooltip:{...tooltipBase,trigger:'axis'},
+  grid:{left:'3%',right:'5%',bottom:'3%',top:'12%',containLabel:true},
+  xAxis:{type:'value',axisLabel:{color:'#8ba8c8',fontFamily:'JetBrains Mono',formatter:v=>'¥'+v},splitLine:{lineStyle:{color:'rgba(77,166,255,0.06)'}},axisLine:{show:false}},
+  yAxis:{type:'category',data:['西湖基础飞行\n(竞品)','千岛湖拼机\n(竞品)','杭绍城际\n(竞品)','新联A航线\n5分钟','新联B航线\n10分钟','新联C航线\n18分钟'],axisLabel:{color:'#8ba8c8',fontSize:10,fontFamily:'Noto Sans SC'},axisLine:{lineStyle:{color:'rgba(77,166,255,0.15)'}},axisTick:{show:false}},
+  series:[{
+    type:'bar',barWidth:'50%',
+    data:[
+      {value:99,itemStyle:{color:'rgba(255,107,107,0.4)',borderRadius:[0,4,4,0]}},
+      {value:198,itemStyle:{color:'rgba(255,107,107,0.4)',borderRadius:[0,4,4,0]}},
+      {value:498,itemStyle:{color:'rgba(255,107,107,0.4)',borderRadius:[0,4,4,0]}},
+      {value:680,itemStyle:{color:C.mint,borderRadius:[0,6,6,0]}},
+      {value:1080,itemStyle:{color:C.sky,borderRadius:[0,6,6,0]}},
+      {value:1980,itemStyle:{color:C.gold,borderRadius:[0,6,6,0]}}
+    ],
+    label:{show:true,position:'right',color:C.ice,fontSize:11,fontFamily:'JetBrains Mono',formatter:p=>'¥'+p.value}
+  }]
+});
+})();
+
+// --- CHART: AUDIENCE PIE ---
+(function(){
+const c=initChart('chartAudience');if(!c)return;
+c.setOption({
+  tooltip:{...tooltipBase,trigger:'item'},
+  series:[{
+    type:'pie',radius:['42%','72%'],center:['50%','55%'],
+    label:{color:C.ice,fontSize:12,fontFamily:'Noto Sans SC',formatter:'{b}\n{d}%'},
+    labelLine:{lineStyle:{color:'rgba(77,166,255,0.3)'}},
+    data:[
+      {value:40,name:'都市情侣/闺蜜',itemStyle:{color:C.sky}},
+      {value:35,name:'亲子家庭',itemStyle:{color:C.mint}},
+      {value:25,name:'品质旅行客',itemStyle:{color:C.gold}}
+    ],
+    emphasis:{itemStyle:{shadowBlur:20,shadowColor:'rgba(77,166,255,0.4)'}}
+  }]
+});
+})();
+
+// --- CHART: MEDIA RADAR ---
+(function(){
+const c=initChart('chartMedia');if(!c)return;
+c.setOption({
+  tooltip:{...tooltipBase},
+  legend:{data:['都市情侣/闺蜜','亲子家庭','品质旅行客'],textStyle:{color:C.ice,fontSize:10},bottom:0},
+  radar:{
+    indicator:[
+      {name:'小红书',max:100},{name:'抖音',max:100},{name:'OTA平台',max:100},{name:'朋友推荐',max:100},{name:'直播',max:100},{name:'朋友圈',max:100}
+    ],
+    axisName:{color:'#8ba8c8',fontSize:10},
+    splitArea:{areaStyle:{color:['rgba(77,166,255,0.02)','rgba(77,166,255,0.05)']}},
+    splitLine:{lineStyle:{color:'rgba(77,166,255,0.1)'}},
+    axisLine:{lineStyle:{color:'rgba(77,166,255,0.15)'}}
+  },
+  series:[{
+    type:'radar',
+    data:[
+      {value:[95,75,40,70,50,80],name:'都市情侣/闺蜜',lineStyle:{color:C.sky},areaStyle:{color:'rgba(77,166,255,0.15)'},itemStyle:{color:C.sky}},
+      {value:[50,85,70,55,65,75],name:'亲子家庭',lineStyle:{color:C.mint},areaStyle:{color:'rgba(52,211,153,0.15)'},itemStyle:{color:C.mint}},
+      {value:[70,60,85,45,40,35],name:'品质旅行客',lineStyle:{color:C.gold},areaStyle:{color:'rgba(240,184,72,0.15)'},itemStyle:{color:C.gold}}
+    ]
+  }]
+});
+})();
+
+// --- CHART: ROI ---
+(function(){
+const c=initChart('chartROI');if(!c)return;
+c.setOption({
+  tooltip:{...tooltipBase,trigger:'axis'},
+  legend:{data:['投入成本','预期产出'],textStyle:{color:C.ice},top:0},
+  grid:{left:'3%',right:'5%',bottom:'3%',top:'15%',containLabel:true},
+  xAxis:{type:'category',data:['抖音信息流','小红书投放','KOL合作','KOC合作','内容制作','促销补贴','弹性预算'],axisLabel:{color:'#8ba8c8',fontSize:10,rotate:20,fontFamily:'Noto Sans SC'},axisLine:{lineStyle:{color:'rgba(77,166,255,0.15)'}},axisTick:{show:false}},
+  yAxis:{type:'value',axisLabel:{color:'#8ba8c8',fontFamily:'JetBrains Mono',formatter:v=>(v/10000).toFixed(1)+'万'},splitLine:{lineStyle:{color:'rgba(77,166,255,0.08)'}},axisLine:{show:false}},
+  series:[
+    {name:'投入成本',type:'bar',barWidth:'25%',data:[8000,5000,6000,4000,3000,2000,1500],itemStyle:{color:'rgba(255,107,107,0.6)',borderRadius:[6,6,0,0]},label:{show:true,position:'top',color:'#FF6B6B',fontSize:9,fontFamily:'JetBrains Mono',formatter:p=>'¥'+p.value}},
+    {name:'预期产出',type:'bar',barWidth:'25%',data:[75000,50000,60000,35000,20000,8000,2000],itemStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'#34D399'},{offset:1,color:'#1fa87a'}]},borderRadius:[6,6,0,0]},label:{show:true,position:'top',color:'#34D399',fontSize:9,fontFamily:'JetBrains Mono',formatter:p=>'¥'+p.value}}
+  ]
+});
+})();
+
+// --- CHART: NOTE TYPE PIE ---
+(function(){
+const c=initChart('chartNoteType');if(!c)return;
+c.setOption({
+  tooltip:{...tooltipBase,trigger:'item'},
+  series:[{
+    type:'pie',radius:['35%','65%'],center:['50%','50%'],
+    label:{color:C.ice,fontSize:10,formatter:'{b} {d}%'},
+    labelLine:{lineStyle:{color:'rgba(77,166,255,0.2)'},length:8,length2:10},
+    data:[
+      {value:30,name:'攻略合集',itemStyle:{color:C.sky}},
+      {value:30,name:'体验Vlog',itemStyle:{color:C.mint}},
+      {value:20,name:'出片教程',itemStyle:{color:C.gold}},
+      {value:20,name:'价格透明帖',itemStyle:{color:C.coral}}
+    ]
+  }]
+});
+})();
+
+// --- CHART: GANTT (using ECharts custom) ---
+(function(){
+const c=initChart('chartGantt');if(!c)return;
+const days=[];
+for(let d=15;d<=30;d++)days.push('4/'+d);
+for(let d=1;d<=5;d++)days.push('5/'+d);
+const cats=['官号内容制作','抖音短视频发布','小红书笔记发布','KOL/KOC合作','信息流投放','早鸟预售','春假亲子套餐','五一秒杀活动','抖音直播','私域运营','数据复盘'];
+// Data: [catIndex, startDay, endDay, color]
+const tasks=[
+  [0,0,6,C.sky],[0,7,13,C.sky],[0,13,20,C.sky],
+  [1,0,2,'rgba(77,166,255,0.5)'],[1,2,5,'rgba(77,166,255,0.5)'],[1,5,8,'rgba(77,166,255,0.5)'],[1,8,12,'rgba(77,166,255,0.6)'],[1,13,20,C.sky],
+  [2,0,3,'rgba(52,211,153,0.5)'],[2,3,7,'rgba(52,211,153,0.5)'],[2,7,12,'rgba(52,211,153,0.5)'],[2,13,20,C.mint],
+  [3,3,12,C.gold],
+  [4,10,20,'rgba(255,107,107,0.7)'],
+  [5,0,12,'rgba(77,166,255,0.4)'],
+  [6,13,15,'rgba(52,211,153,0.7)'],
+  [7,16,18,C.coral],
+  [8,16,17,'rgba(240,184,72,0.7)'],[8,18,19,'rgba(240,184,72,0.7)'],
+  [9,10,20,'rgba(52,211,153,0.4)'],
+  [10,10,10,'#fff'],[10,20,20,'#fff']
+];
+
+function renderItem(params,api){
+  const catIdx=api.value(0);
+  const start=api.coord([api.value(1),catIdx]);
+  const end=api.coord([api.value(2),catIdx]);
+  const h=api.size([0,1])[1]*0.5;
+  return {type:'rect',shape:{x:start[0],y:start[1]-h/2,width:Math.max(end[0]-start[0],6),height:h,r:4},style:{fill:api.value(3)},emphasis:{style:{fill:C.sky}}};
+}
+
+c.setOption({
+  tooltip:{...tooltipBase,formatter:p=>{const d=p.data;return cats[d[0]]+'<br/>'+days[d[1]]+' — '+days[d[2]];}},
+  grid:{left:'12%',right:'2%',bottom:'8%',top:'3%'},
+  xAxis:{type:'category',data:days,axisLabel:{color:'#8ba8c8',fontSize:9,fontFamily:'JetBrains Mono'},axisLine:{lineStyle:{color:'rgba(77,166,255,0.15)'}},axisTick:{show:false},splitLine:{show:true,lineStyle:{color:'rgba(77,166,255,0.04)'}}},
+  yAxis:{type:'category',data:cats,inverse:true,axisLabel:{color:'#8ba8c8',fontSize:10,fontFamily:'Noto Sans SC'},axisLine:{lineStyle:{color:'rgba(77,166,255,0.15)'}},axisTick:{show:false}},
+  series:[{
+    type:'custom',renderItem:renderItem,
+    encode:{x:[1,2],y:0},
+    data:tasks
+  }],
+  // Mark phases
+  visualMap:false
+});
+
+// Add phase markers via markArea workaround - using annotations
+})();
+
+// --- CHART: BUDGET PIE ---
+(function(){
+const c=initChart('chartBudget');if(!c)return;
+c.setOption({
+  tooltip:{...tooltipBase,trigger:'item',formatter:p=>p.name+'<br/>¥'+p.value.toLocaleString()+' ('+p.percent+'%)'},
+  series:[{
+    type:'pie',radius:['40%','70%'],center:['50%','50%'],
+    label:{color:C.ice,fontSize:11,fontFamily:'Noto Sans SC',formatter:'{b}\n¥{c}'},
+    labelLine:{lineStyle:{color:'rgba(77,166,255,0.3)'}},
+    data:[
+      {value:8000,name:'抖音信息流',itemStyle:{color:C.sky}},
+      {value:5000,name:'小红书投放',itemStyle:{color:C.coral}},
+      {value:6000,name:'KOL合作',itemStyle:{color:C.gold}},
+      {value:4000,name:'KOC合作',itemStyle:{color:'#a78bfa'}},
+      {value:3000,name:'内容制作',itemStyle:{color:C.mint}},
+      {value:2000,name:'促销补贴',itemStyle:{color:'#f472b6'}},
+      {value:1500,name:'弹性预算',itemStyle:{color:'rgba(200,218,240,0.3)'}}
+    ],
+    emphasis:{itemStyle:{shadowBlur:20,shadowColor:'rgba(77,166,255,0.4)'}}
+  }]
+});
+})();
+
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"75124c326cb447fe934cde04713ae013","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
