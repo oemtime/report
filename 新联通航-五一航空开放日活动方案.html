@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>五一航空开放日 · 活动方案 | 杭州新联通用航空</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        navy: { DEFAULT: '#0a1a2e', light: '#1E3A5F', mid: '#152d4a' },
+        sky: '#4DA6FF',
+        mint: '#34D399',
+        gold: '#F0B848',
+        coral: '#FF6B6B',
+      },
+      fontFamily: {
+        sans: ['Noto Sans SC', 'sans-serif'],
+        serif: ['Noto Serif SC', 'serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      }
+    }
+  }
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#0a1a2e;overflow-x:hidden}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#4DA6FF,#34D399,#F0B848);z-index:9999;width:0%;transition:width .1s}
+.glass{background:rgba(30,58,95,.45);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(77,166,255,.15);border-radius:16px}
+.glass-sm{background:rgba(30,58,95,.35);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(77,166,255,.12);border-radius:12px}
+.section-title{font-family:'Noto Serif SC',serif;font-weight:700;background:linear-gradient(135deg,#4DA6FF,#34D399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.kpi-num{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:2rem;background:linear-gradient(135deg,#F0B848,#FF6B6B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.accent-border-l{border-left:3px solid #4DA6FF}
+.accent-border-gold{border-left:3px solid #F0B848}
+.accent-border-mint{border-left:3px solid #34D399}
+.accent-border-coral{border-left:3px solid #FF6B6B}
+.tag{display:inline-block;padding:2px 10px;border-radius:99px;font-size:.75rem;font-weight:500}
+.tag-sky{background:rgba(77,166,255,.15);color:#4DA6FF;border:1px solid rgba(77,166,255,.3)}
+.tag-gold{background:rgba(240,184,72,.15);color:#F0B848;border:1px solid rgba(240,184,72,.3)}
+.tag-mint{background:rgba(52,211,153,.15);color:#34D399;border:1px solid rgba(52,211,153,.3)}
+.tag-coral{background:rgba(255,107,107,.15);color:#FF6B6B;border:1px solid rgba(255,107,107,.3)}
+.hero-bg{background:radial-gradient(ellipse at 50% 0%,rgba(77,166,255,.12) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(52,211,153,.08) 0%,transparent 40%),#0a1a2e}
+.grid-bg{background-image:radial-gradient(rgba(77,166,255,.06) 1px,transparent 1px);background-size:32px 32px}
+.flow-arrow{width:40px;height:2px;background:linear-gradient(90deg,#4DA6FF,#34D399);position:relative;display:inline-block;margin:0 8px;vertical-align:middle}
+.flow-arrow::after{content:'';position:absolute;right:-2px;top:-4px;border:5px solid transparent;border-left:6px solid #34D399}
+.severity-high{background:rgba(255,107,107,.15);border:1px solid rgba(255,107,107,.4);color:#FF6B6B}
+.severity-mid{background:rgba(240,184,72,.15);border:1px solid rgba(240,184,72,.4);color:#F0B848}
+.severity-low{background:rgba(52,211,153,.15);border:1px solid rgba(52,211,153,.4);color:#34D399}
+table.themed{width:100%;border-collapse:separate;border-spacing:0}
+table.themed th{background:rgba(77,166,255,.12);color:#4DA6FF;font-weight:500;padding:10px 16px;text-align:left;font-size:.85rem;border-bottom:1px solid rgba(77,166,255,.2)}
+table.themed td{padding:10px 16px;font-size:.85rem;border-bottom:1px solid rgba(77,166,255,.08)}
+table.themed tr:hover td{background:rgba(77,166,255,.04)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.float-anim{animation:float 4s ease-in-out infinite}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 20px rgba(77,166,255,.2)}50%{box-shadow:0 0 40px rgba(77,166,255,.4)}}
+.pulse-glow{animation:pulse-glow 3s ease-in-out infinite}
+.chart-container{width:100%;min-height:350px}
+@media(max-width:768px){.kpi-num{font-size:1.5rem}.chart-container{min-height:280px}}
+</style>
+</head>
+<body class="bg-navy font-sans text-gray-200 grid-bg">
+<div id="progress-bar"></div>
+<nav class="fixed top-0 left-0 w-full z-50 glass" style="border-radius:0;border-top:none;border-left:none;border-right:none;backdrop-filter:blur(20px)">
+<div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-sky flex items-center justify-center text-navy font-bold text-sm">XL</div>
+<span class="text-sm font-medium text-gray-300 hidden sm:inline">杭州新联通用航空</span>
+</div>
+<div class="flex gap-4 text-xs text-gray-400">
+<a href="#overview" class="hover:text-sky transition">概述</a>
+<a href="#goals" class="hover:text-sky transition">目标</a>
+<a href="#strategy" class="hover:text-sky transition">获客</a>
+<a href="#pricing" class="hover:text-sky transition">价格</a>
+<a href="#execution" class="hover:text-sky transition">执行</a>
+<a href="#timeline" class="hover:text-sky transition">排期</a>
+<a href="#risk" class="hover:text-sky transition">预案</a>
+<a href="#budget" class="hover:text-sky transition">预算</a>
+</div>
+</div>
+</nav>
+<!-- HERO -->
+<section class="hero-bg min-h-screen flex items-center justify-center relative pt-16">
+<div class="absolute inset-0 overflow-hidden pointer-events-none">
+<div class="absolute top-20 left-10 w-72 h-72 rounded-full bg-sky opacity-5 blur-3xl"></div>
+<div class="absolute bottom-20 right-20 w-96 h-96 rounded-full bg-mint opacity-5 blur-3xl"></div>
+</div>
+<div class="max-w-5xl mx-auto px-4 text-center relative z-10">
+<div class="inline-block mb-6"><span class="tag tag-sky">杭州新联通用航空有限公司 · 2026</span></div>
+<h1 class="text-4xl sm:text-6xl lg:text-7xl font-black mb-4 leading-tight hero-title" style="font-family:'Noto Serif SC',serif">
+<span style="background:linear-gradient(135deg,#4DA6FF 0%,#34D399 50%,#F0B848 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">五一航空开放日</span>
+</h1>
+<p class="text-xl sm:text-2xl text-gray-400 mb-2 font-light hero-sub">活动方案</p>
+<div class="w-24 h-0.5 bg-gradient-to-r from-sky to-mint mx-auto my-8 hero-line"></div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 hero-kpis">
+<div class="glass p-6 text-center pulse-glow"><div class="kpi-num">5天</div><div class="text-xs text-gray-400 mt-1">活动周期</div></div>
+<div class="glass p-6 text-center pulse-glow" style="animation-delay:.5s"><div class="kpi-num">1000+</div><div class="text-xs text-gray-400 mt-1">预计到场</div></div>
+<div class="glass p-6 text-center pulse-glow" style="animation-delay:1s"><div class="kpi-num">100单</div><div class="text-xs text-gray-400 mt-1">成交目标</div></div>
+<div class="glass p-6 text-center pulse-glow" style="animation-delay:1.5s"><div class="kpi-num">~27万</div><div class="text-xs text-gray-400 mt-1">销售额</div></div>
+</div>
+<div class="mt-16 animate-bounce text-sky"><svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg></div>
+</div>
+</section>
+<!-- SECTION 1: 活动概述 -->
+<section id="overview" class="py-24 px-4">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16 anim-up"><span class="tag tag-sky mb-4">SECTION 01</span><h2 class="section-title text-3xl sm:text-4xl mt-3">活动概述</h2></div>
+<div class="grid md:grid-cols-2 gap-6 mb-16">
+<div class="glass p-8 anim-up hover:border-sky transition-all duration-300 cursor-pointer group">
+<div class="flex items-center gap-3 mb-4"><span class="tag tag-sky">方案 A</span><span class="text-xs text-gray-500">推荐</span></div>
+<h3 class="text-xl font-bold text-white mb-2 group-hover:text-sky transition">「飞行不设限 · 五一开放日」</h3>
+<p class="text-sm text-gray-400 leading-relaxed">年轻化定位、体验感强，主打探索精神与飞行梦想，适合社交媒体传播与年轻群体引流。</p>
+</div>
+<div class="glass p-8 anim-up hover:border-gold transition-all duration-300 cursor-pointer group">
+<div class="flex items-center gap-3 mb-4"><span class="tag tag-gold">方案 B</span></div>
+<h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold transition">「天空之城 · 杭州航空嘉年华」</h3>
+<p class="text-sm text-gray-400 leading-relaxed">嘉年华氛围、亲子属性突出，节日感强，适合家庭客群和周边渠道联动合作。</p>
+</div>
+</div>
+<div class="glass p-6 mb-16 flex flex-wrap gap-8 items-center justify-center anim-up">
+<div class="text-center"><div class="text-xs text-gray-500 mb-1">活动日期</div><div class="text-lg font-bold text-sky font-mono">5.1 — 5.5</div><div class="text-xs text-gray-500">每日 09:30-16:30</div></div>
+<div class="w-px h-10 bg-gray-700 hidden sm:block"></div>
+<div class="text-center"><div class="text-xs text-gray-500 mb-1">筹备周期</div><div class="text-lg font-bold text-gold font-mono">4.17 — 4.27</div><div class="text-xs text-gray-500">共11天集中筹备</div></div>
+<div class="w-px h-10 bg-gray-700 hidden sm:block"></div>
+<div class="text-center"><div class="text-xs text-gray-500 mb-1">搭建/演练</div><div class="text-lg font-bold text-mint font-mono">4.29 — 4.30</div><div class="text-xs text-gray-500">全员参与</div></div>
+</div>
+<h3 class="text-lg font-bold text-white mb-6 anim-up">活动内容板块</h3>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-16">
+<div class="glass-sm p-5 anim-up"><div class="flex items-center gap-2 mb-2"><span class="w-7 h-7 rounded-lg bg-sky/20 flex items-center justify-center text-sky text-xs font-bold">01</span><span class="text-sm font-bold text-white">航空知识科普</span></div><p class="text-xs text-gray-400">每日2-3场，每场15-20分钟，飞行员现场讲解直升机原理。</p></div>
+<div class="glass-sm p-5 anim-up"><div class="flex items-center gap-2 mb-2"><span class="w-7 h-7 rounded-lg bg-sky/20 flex items-center justify-center text-sky text-xs font-bold">02</span><span class="text-sm font-bold text-white">停机坪内部参观</span></div><p class="text-xs text-gray-400">分批次进入，机长全程引导讲解，近距离接触直升机。</p></div>
+<div class="glass-sm p-5 anim-up"><div class="flex items-center gap-2 mb-2"><span class="w-7 h-7 rounded-lg bg-sky/20 flex items-center justify-center text-sky text-xs font-bold">03</span><span class="text-sm font-bold text-white">直升机合影打卡</span></div><p class="text-xs text-gray-400">Bell 407、空客H130机型，专业摄影点位设置。</p></div>
+<div class="glass-sm p-5 anim-up"><div class="flex items-center gap-2 mb-2"><span class="w-7 h-7 rounded-lg bg-gold/20 flex items-center justify-center text-gold text-xs font-bold">04</span><span class="text-sm font-bold text-white">航空伴手礼</span></div><p class="text-xs text-gray-400">亚克力登机牌纪念卡，含个人信息定制。</p></div>
+<div class="glass-sm p-5 anim-up"><div class="flex items-center gap-2 mb-2"><span class="w-7 h-7 rounded-lg bg-gold/20 flex items-center justify-center text-gold text-xs font-bold">05</span><span class="text-sm font-bold text-white">座舱体验</span></div><p class="text-xs text-gray-400">地面静态体验，每人约3分钟，感受真实驾驶舱。</p></div>
+<div class="glass-sm p-5 anim-up"><div class="flex items-center gap-2 mb-2"><span class="w-7 h-7 rounded-lg bg-mint/20 flex items-center justify-center text-mint text-xs font-bold">06</span><span class="text-sm font-bold text-white">航空市集/互动区</span></div><p class="text-xs text-gray-400">模型展示、航空问答抽奖、儿童涂色体验区。</p></div>
+<div class="glass-sm p-5 anim-up"><div class="flex items-center gap-2 mb-2"><span class="w-7 h-7 rounded-lg bg-coral/20 flex items-center justify-center text-coral text-xs font-bold">07</span><span class="text-sm font-bold text-white">空中游览转化</span></div><p class="text-xs text-gray-400">门票抵扣80元，现场引导转化空中游览产品。</p></div>
+</div>
+<h3 class="text-lg font-bold text-white mb-6 anim-up">传播亮点 · 社媒推广核心话术</h3>
+<div class="glass p-8 anim-up">
+<div class="grid sm:grid-cols-2 gap-4">
+<div class="flex items-start gap-3"><span class="text-sky mt-0.5">&#10022;</span><span class="text-sm text-gray-300">杭州首个直升机基地公众开放日</span></div>
+<div class="flex items-start gap-3"><span class="text-gold mt-0.5">&#10022;</span><span class="text-sm text-gray-300">与价值3800万+直升机零距离合影</span></div>
+<div class="flex items-start gap-3"><span class="text-mint mt-0.5">&#10022;</span><span class="text-sm text-gray-300">专业飞行员带你揭秘直升机驾驶舱</span></div>
+<div class="flex items-start gap-3"><span class="text-coral mt-0.5">&#10022;</span><span class="text-sm text-gray-300">29.9元即可走进真实直升机停机坪</span></div>
+<div class="flex items-start gap-3"><span class="text-sky mt-0.5">&#10022;</span><span class="text-sm text-gray-300">门票可膨胀至80元抵扣空中游览机票</span></div>
+<div class="flex items-start gap-3"><span class="text-gold mt-0.5">&#10022;</span><span class="text-sm text-gray-300">告别五一"人从众"旅游模式，在天空看杭州</span></div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: 目标体系 -->
+<section id="goals" class="py-24 px-4" style="background:linear-gradient(180deg,transparent,rgba(30,58,95,.15),transparent)">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16 anim-up"><span class="tag tag-mint mb-4">SECTION 02</span><h2 class="section-title text-3xl sm:text-4xl mt-3">目标体系</h2></div>
+<div class="grid lg:grid-cols-2 gap-8">
+<div id="chart-goals" class="chart-container glass p-4 anim-up" style="min-height:400px"></div>
+<div class="space-y-4 anim-up">
+<div class="glass-sm p-5 accent-border-gold"><div class="text-sm font-bold text-gold mb-1">销售转化</div><div class="text-xs text-gray-400">100单（300人次），销售额 <span class="text-white font-mono font-bold">26-27万元</span></div></div>
+<div class="glass-sm p-5 accent-border-l"><div class="text-sm font-bold text-sky mb-1">线上曝光</div><div class="text-xs text-gray-400">全平台 <span class="text-white font-mono font-bold">100万+</span></div></div>
+<div class="glass-sm p-5 accent-border-mint"><div class="text-sm font-bold text-mint mb-1">现场人气</div><div class="text-xs text-gray-400">累计到场 <span class="text-white font-mono font-bold">1000人次+</span></div></div>
+<div class="glass-sm p-5 accent-border-coral"><div class="text-sm font-bold text-coral mb-1">品牌沉淀</div><div class="text-xs text-gray-400">官号涨粉 <span class="text-white font-mono font-bold">1000+</span>，私域 <span class="text-white font-mono font-bold">500+</span></div></div>
+<div class="glass-sm p-5 accent-border-l"><div class="text-sm font-bold text-sky mb-1">渠道验证</div><div class="text-xs text-gray-400">跑通 <span class="text-white">渠道引流 → 体验 → 转化</span> 闭环</div></div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: 获客策略 -->
+<section id="strategy" class="py-24 px-4">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16 anim-up"><span class="tag tag-gold mb-4">SECTION 03</span><h2 class="section-title text-3xl sm:text-4xl mt-3">获客策略</h2></div>
+<div class="space-y-8">
+<div class="glass p-8 anim-up">
+<div class="flex items-center gap-3 mb-4"><span class="w-8 h-8 rounded-full bg-sky/20 flex items-center justify-center text-sky font-bold text-sm">3.1</span><h3 class="text-lg font-bold text-white">线下：路口拦截引流</h3></div>
+<div class="grid sm:grid-cols-2 gap-6 text-sm text-gray-400">
+<div><p class="mb-2">在基地周边 <span class="text-white font-medium">2个高车流路口</span> 设置广告牌，直接拦截节假日自驾客群。</p><div class="flex gap-2 mt-3"><span class="tag tag-sky">周裕康 · 物料</span><span class="tag tag-mint">盛莹莹 · 协调</span></div></div>
+<div class="glass-sm p-4 text-xs"><div class="text-sky font-medium mb-2">投放要点</div><ul class="space-y-1 text-gray-400"><li>&#8226; 大字报式设计，3秒传达核心信息</li><li>&#8226; 配合二维码直接跳转购票页</li><li>&#8226; 4.28前完成安装</li></ul></div>
+</div>
+</div>
+<div class="glass p-8 anim-up">
+<div class="flex items-center gap-3 mb-4"><span class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold font-bold text-sm">3.2</span><h3 class="text-lg font-bold text-white">线上：达人合作 + 内容传播</h3></div>
+<div class="grid sm:grid-cols-3 gap-4 mb-4">
+<div class="glass-sm p-4 text-center"><div class="text-2xl font-bold text-gold font-mono">50人</div><div class="text-xs text-gray-500">达人邀约目标</div></div>
+<div class="glass-sm p-4 text-center"><div class="text-2xl font-bold text-mint font-mono">10-15</div><div class="text-xs text-gray-500">预计到场人数</div></div>
+<div class="glass-sm p-4 text-center"><div class="text-2xl font-bold text-sky font-mono">1K-50K</div><div class="text-xs text-gray-500">粉丝量筛选区间</div></div>
+</div>
+<div class="text-sm text-gray-400 mb-3">达人类型：本地生活 / 亲子 / 户外探险。官号内容发布排期 <span class="text-white font-mono">4.20 - 5.5</span>，覆盖预热-爆发-长尾三阶段。</div>
+<div class="flex gap-2"><span class="tag tag-gold">孙一凡 · 负责</span></div>
+</div>
+<div class="glass p-8 anim-up">
+<div class="flex items-center gap-3 mb-4"><span class="w-8 h-8 rounded-full bg-mint/20 flex items-center justify-center text-mint font-bold text-sm">3.3</span><h3 class="text-lg font-bold text-white">渠道：周边露营地 / 农场联动</h3></div>
+<div class="flex flex-wrap gap-2 mb-4"><span class="tag tag-mint">木YOYO营地</span><span class="tag tag-mint">红博苑营地</span><span class="tag tag-mint">在山野营地</span></div>
+<div class="text-sm text-gray-400 mb-3">合作模式：<span class="text-white">29.9元票款归渠道</span>，我方通过空中游览二次转化盈利。实现零成本获客。</div>
+<div class="flex gap-2"><span class="tag tag-mint">乐鲁杰 · 洽谈</span><span class="tag tag-sky">周裕康 · 物料</span></div>
+</div>
+<div class="glass p-8 anim-up">
+<div class="flex items-center gap-3 mb-4"><span class="w-8 h-8 rounded-full bg-coral/20 flex items-center justify-center text-coral font-bold text-sm">3.4</span><h3 class="text-lg font-bold text-white">政府资源</h3></div>
+<div class="flex flex-wrap gap-2 mb-4"><span class="tag tag-coral">文旅局</span><span class="tag tag-coral">上城区产业突击队</span><span class="tag tag-coral">西湖之声</span><span class="tag tag-coral">商圈LED大屏</span></div>
+<div class="text-sm text-gray-400 mb-3">以 <span class="text-white">"低空经济新场景"</span> 切入，争取官方背书与媒体曝光资源。</div>
+<div class="flex gap-2"><span class="tag tag-coral">于总</span><span class="tag tag-coral">家驹</span><span class="tag tag-coral">宁非</span></div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: 价格策略 -->
+<section id="pricing" class="py-24 px-4" style="background:linear-gradient(180deg,transparent,rgba(30,58,95,.15),transparent)">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16 anim-up"><span class="tag tag-coral mb-4">SECTION 04</span><h2 class="section-title text-3xl sm:text-4xl mt-3">价格策略</h2></div>
+<div class="grid md:grid-cols-2 gap-6 mb-12">
+<div class="glass p-8 text-center anim-up">
+<div class="text-xs text-gray-500 mb-2">开放日门票</div>
+<div class="text-5xl font-black font-mono text-gold mb-2">&#165;29.9</div>
+<div class="text-sm text-gray-400">含全部体验项目 + 航空伴手礼</div>
+<div class="mt-4 tag tag-mint">1.2m以下儿童免费</div>
+</div>
+<div class="glass p-8 anim-up">
+<div class="text-xs text-gray-500 mb-4 text-center">门票膨胀机制</div>
+<div class="flex items-center justify-center gap-2 mb-6">
+<div class="glass-sm px-4 py-2 text-center"><div class="text-lg font-bold text-gold font-mono">&#165;29.9</div><div class="text-xs text-gray-500">门票</div></div>
+<div class="flow-arrow"></div>
+<div class="glass-sm px-4 py-2 text-center"><div class="text-lg font-bold text-mint font-mono">&#165;80</div><div class="text-xs text-gray-500">膨胀抵扣</div></div>
+</div>
+<div class="space-y-2 text-sm">
+<div class="flex justify-between items-center glass-sm px-4 py-2"><span class="text-gray-400">A航线</span><span class="text-gray-500 line-through">&#165;680</span><span class="text-white font-bold font-mono">&#165;600<span class="text-xs text-gray-500">/人</span></span></div>
+<div class="flex justify-between items-center glass-sm px-4 py-2"><span class="text-gray-400">B航线</span><span class="text-gray-500 line-through">&#165;1,080</span><span class="text-white font-bold font-mono">&#165;1,000<span class="text-xs text-gray-500">/人</span></span></div>
+<div class="flex justify-between items-center glass-sm px-4 py-2"><span class="text-gray-400">C航线</span><span class="text-gray-500 line-through">&#165;1,980</span><span class="text-white font-bold font-mono">&#165;1,900<span class="text-xs text-gray-500">/人</span></span></div>
+</div>
+</div>
+</div>
+<div class="glass p-6 anim-up">
+<h3 class="text-base font-bold text-white mb-4 text-center">转化预估漏斗</h3>
+<div id="chart-funnel" class="chart-container" style="min-height:320px"></div>
+<div class="flex flex-wrap justify-center gap-6 mt-4 text-xs text-gray-400">
+<span>转化率 <span class="text-mint font-mono font-bold">7-10%</span></span>
+<span>门票收入 <span class="text-gold font-mono font-bold">~3万</span>（获客成本对冲）</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: 现场执行 -->
+<section id="execution" class="py-24 px-4">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16 anim-up"><span class="tag tag-sky mb-4">SECTION 05</span><h2 class="section-title text-3xl sm:text-4xl mt-3">现场执行</h2></div>
+<div class="glass p-8 mb-12 anim-up overflow-x-auto">
+<h3 class="text-base font-bold text-white mb-6 text-center">参观动线</h3>
+<div class="flex items-center justify-center gap-1 flex-wrap min-w-max mx-auto text-sm">
+<div class="glass-sm px-4 py-3 text-center"><div class="text-sky font-bold">前台</div><div class="text-xs text-gray-500">验票/购票</div></div>
+<div class="flow-arrow"></div>
+<div class="glass-sm px-4 py-3 text-center"><div class="text-gold font-bold">候机厅</div><div class="text-xs text-gray-500">安全讲解</div></div>
+<div class="flow-arrow"></div>
+<div class="glass-sm px-4 py-3 text-center"><div class="text-mint font-bold">登机厅</div><div class="text-xs text-gray-500">转化引导</div></div>
+<div class="flow-arrow"></div>
+<div class="glass-sm px-4 py-3 text-center"><div class="text-coral font-bold">停机坪</div><div class="text-xs text-gray-500">核心体验</div></div>
+<div class="flow-arrow"></div>
+<div class="glass-sm px-4 py-3 text-center" style="border:1px solid rgba(240,184,72,.4)"><div class="text-gold font-bold">空中游览</div><div class="text-xs text-gray-500">转化</div></div>
+<div class="flow-arrow"></div>
+<div class="glass-sm px-4 py-3 text-center"><div class="text-gray-400 font-bold">出口</div></div>
+</div>
+</div>
+<div class="grid md:grid-cols-2 gap-6 mb-12">
+<div class="glass-sm p-6 anim-up">
+<h4 class="text-sm font-bold text-sky mb-4">前台区</h4>
+<table class="themed"><thead><tr><th>岗位</th><th>部门</th><th>人数</th></tr></thead><tbody>
+<tr><td class="text-gray-300">验票/购票</td><td class="text-gray-400">综合部</td><td class="font-mono text-white">1</td></tr>
+<tr><td class="text-gray-300">伴手礼发放</td><td class="text-gray-400">市场部</td><td class="font-mono text-white">1</td></tr>
+<tr><td class="text-gray-300">留资登记</td><td class="text-gray-400">市场部</td><td class="font-mono text-white">1</td></tr>
+</tbody></table>
+</div>
+<div class="glass-sm p-6 anim-up">
+<h4 class="text-sm font-bold text-gold mb-4">候机厅</h4>
+<table class="themed"><thead><tr><th>岗位</th><th>部门</th><th>人数</th></tr></thead><tbody>
+<tr><td class="text-gray-300">安全讲解</td><td class="text-gray-400">市场部</td><td class="font-mono text-white">1</td></tr>
+<tr><td class="text-gray-300">转化预热</td><td class="text-gray-400">市场部</td><td class="font-mono text-white">1(兼)</td></tr>
+</tbody></table>
+</div>
+<div class="glass-sm p-6 anim-up">
+<h4 class="text-sm font-bold text-mint mb-4">登机厅</h4>
+<table class="themed"><thead><tr><th>岗位</th><th>部门</th><th>人数</th></tr></thead><tbody>
+<tr><td class="text-gray-300">转化引导</td><td class="text-gray-400">综合部</td><td class="font-mono text-white">1</td></tr>
+<tr><td class="text-gray-300">文创销售</td><td class="text-gray-400">综合部</td><td class="font-mono text-white">1(兼)</td></tr>
+<tr><td class="text-gray-300">饮品服务</td><td class="text-gray-400">综合部</td><td class="font-mono text-white">1(兼)</td></tr>
+</tbody></table>
+</div>
+<div class="glass-sm p-6 anim-up">
+<h4 class="text-sm font-bold text-coral mb-4">停机坪</h4>
+<table class="themed"><thead><tr><th>岗位</th><th>部门</th><th>人数</th></tr></thead><tbody>
+<tr><td class="text-gray-300">科普讲解</td><td class="text-gray-400">飞行部</td><td class="font-mono text-white">1</td></tr>
+<tr><td class="text-gray-300">安全保障</td><td class="text-gray-400">机务部</td><td class="font-mono text-white">2</td></tr>
+<tr><td class="text-gray-300">参观引导</td><td class="text-gray-400">飞行/机务</td><td class="font-mono text-white">1</td></tr>
+<tr><td class="text-gray-300">合影协助</td><td class="text-gray-400">市场部</td><td class="font-mono text-white">1</td></tr>
+<tr><td class="text-gray-300">座舱体验</td><td class="text-gray-400">机务部</td><td class="font-mono text-white">1</td></tr>
+<tr><td class="text-gray-300">飞行执行</td><td class="text-gray-400">飞行部</td><td class="font-mono text-white">按计划</td></tr>
+</tbody></table>
+</div>
+</div>
+<div class="glass p-6 mb-12 anim-up">
+<h4 class="text-sm font-bold text-coral mb-3">安全管控要点</h4>
+<div class="flex flex-wrap gap-4 text-xs text-gray-400">
+<span class="glass-sm px-3 py-2">参观区 vs 飞行控制区 <span class="text-coral font-bold">严格分离</span></span>
+<span class="glass-sm px-3 py-2">每批 <span class="text-white font-bold font-mono">&le;20人</span></span>
+<span class="glass-sm px-3 py-2"><span class="text-white font-bold font-mono">15分钟</span> 清场轮换</span>
+</div>
+</div>
+<div class="glass p-8 anim-up">
+<h3 class="text-base font-bold text-white mb-6 text-center">每日时间线</h3>
+<div id="chart-schedule" class="chart-container" style="min-height:300px"></div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: 筹备排期 -->
+<section id="timeline" class="py-24 px-4" style="background:linear-gradient(180deg,transparent,rgba(30,58,95,.15),transparent)">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16 anim-up"><span class="tag tag-mint mb-4">SECTION 06</span><h2 class="section-title text-3xl sm:text-4xl mt-3">筹备排期</h2></div>
+<div class="glass p-6 mb-12 anim-up">
+<div id="chart-gantt" class="chart-container" style="min-height:520px"></div>
+</div>
+<h3 class="text-lg font-bold text-white mb-6 anim-up">责任矩阵</h3>
+<div class="glass p-2 anim-up overflow-x-auto">
+<table class="themed">
+<thead><tr><th>责任人/部门</th><th>核心职责</th></tr></thead>
+<tbody>
+<tr><td class="text-white font-medium">于总</td><td class="text-gray-400">政府资源对接</td></tr>
+<tr><td class="text-white font-medium">乐鲁杰</td><td class="text-gray-400">渠道合作洽谈</td></tr>
+<tr><td class="text-white font-medium">周裕康</td><td class="text-gray-400">物料设计制作</td></tr>
+<tr><td class="text-white font-medium">孙一凡</td><td class="text-gray-400">线上达人邀约</td></tr>
+<tr><td class="text-white font-medium">家驹</td><td class="text-gray-400">视频素材拍摄</td></tr>
+<tr><td class="text-sky font-medium">市场部</td><td class="text-gray-400">活动统筹、导客引流、现场执行、线上发布</td></tr>
+<tr><td class="text-gold font-medium">综合部</td><td class="text-gray-400">票务核销、收款、财务对账、后勤</td></tr>
+<tr><td class="text-mint font-medium">飞行部</td><td class="text-gray-400">科普讲解、参观引导、飞行执行</td></tr>
+<tr><td class="text-coral font-medium">机务部</td><td class="text-gray-400">停机坪安全管控、设备维护</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- SECTION 7: 风险预案 -->
+<section id="risk" class="py-24 px-4">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16 anim-up"><span class="tag tag-coral mb-4">SECTION 07</span><h2 class="section-title text-3xl sm:text-4xl mt-3">风险预案</h2></div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="glass p-6 anim-up"><div class="flex items-center justify-between mb-3"><h4 class="text-sm font-bold text-white">阴雨天气</h4><span class="tag severity-high text-xs">高风险</span></div><p class="text-xs text-gray-400 leading-relaxed">启用机库室内参观替代方案；提前与购票用户沟通改期/退款政策；现场配置雨棚保障基本动线。</p></div>
+<div class="glass p-6 anim-up"><div class="flex items-center justify-between mb-3"><h4 class="text-sm font-bold text-white">客流超预期</h4><span class="tag severity-mid text-xs">中风险</span></div><p class="text-xs text-gray-400 leading-relaxed">严格执行限流 20人/批，启动排队叫号系统，避免停机坪拥挤引发安全隐患。</p></div>
+<div class="glass p-6 anim-up"><div class="flex items-center justify-between mb-3"><h4 class="text-sm font-bold text-white">客流不达预期</h4><span class="tag severity-mid text-xs">中风险</span></div><p class="text-xs text-gray-400 leading-relaxed">4.30进行预售数据评估，不达标则加大推券力度、增加线上投放预算。</p></div>
+<div class="glass p-6 anim-up"><div class="flex items-center justify-between mb-3"><h4 class="text-sm font-bold text-white">飞行安全</h4><span class="tag severity-high text-xs">低概率高影响</span></div><p class="text-xs text-gray-400 leading-relaxed">严格分区管理，参观区与飞行控制区物理隔离；每批15分钟清场，确保飞行作业零干扰。</p></div>
+<div class="glass p-6 anim-up"><div class="flex items-center justify-between mb-3"><h4 class="text-sm font-bold text-white">负面舆情</h4><span class="tag severity-low text-xs">低风险</span></div><p class="text-xs text-gray-400 leading-relaxed">提前准备FAQ话术库，覆盖常见投诉场景；负面反馈5分钟内响应，专人处理。</p></div>
+<div class="glass p-6 anim-up"><div class="flex items-center justify-between mb-3"><h4 class="text-sm font-bold text-white">设备故障</h4><span class="tag severity-low text-xs">低风险</span></div><p class="text-xs text-gray-400 leading-relaxed">备用收款设备待命，准备纸质门票应急方案，确保核销流程不中断。</p></div>
+</div>
+</div>
+</section>
+<!-- SECTION 8: 预算与数据追踪 -->
+<section id="budget" class="py-24 px-4" style="background:linear-gradient(180deg,transparent,rgba(30,58,95,.15),transparent)">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16 anim-up"><span class="tag tag-gold mb-4">SECTION 08</span><h2 class="section-title text-3xl sm:text-4xl mt-3">预算与数据追踪</h2></div>
+<div class="grid lg:grid-cols-2 gap-8 mb-12">
+<div class="glass p-6 anim-up">
+<h3 class="text-base font-bold text-white mb-4">预算明细</h3>
+<div id="chart-budget" class="chart-container" style="min-height:320px"></div>
+</div>
+<div class="glass p-2 anim-up">
+<h3 class="text-base font-bold text-white mb-4 px-4 pt-4">费用清单</h3>
+<table class="themed">
+<thead><tr><th>项目</th><th class="text-right">金额</th></tr></thead>
+<tbody>
+<tr><td class="text-gray-300">伴手礼制作</td><td class="text-right font-mono text-gold">&#165;6,000</td></tr>
+<tr><td class="text-gray-300">现场物料</td><td class="text-right font-mono text-gold">&#165;1,000</td></tr>
+<tr><td class="text-gray-300">路口广告牌</td><td class="text-right font-mono text-gold">&#165;5,000</td></tr>
+<tr><td class="text-gray-300">达人合作</td><td class="text-right font-mono text-mint">&#165;0（置换）</td></tr>
+<tr><td class="text-gray-300">渠道分销</td><td class="text-right font-mono text-mint">&#165;0</td></tr>
+<tr><td class="text-gray-300">宣传片制作</td><td class="text-right font-mono text-mint">内部完成</td></tr>
+<tr><td class="text-gray-300">应急/杂项</td><td class="text-right font-mono text-gold">&#165;2,000</td></tr>
+<tr style="background:rgba(77,166,255,.08)"><td class="text-white font-bold">合计</td><td class="text-right font-mono text-white font-bold text-lg">&#165;14,000</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="glass p-2 anim-up">
+<h3 class="text-base font-bold text-white mb-4 px-4 pt-4">每日数据追踪指标</h3>
+<table class="themed">
+<thead><tr><th>#</th><th>指标</th><th>追踪方式</th></tr></thead>
+<tbody>
+<tr><td class="font-mono text-sky">1</td><td class="text-gray-300">门票售卖数</td><td class="text-gray-400">购票系统实时数据</td></tr>
+<tr><td class="font-mono text-sky">2</td><td class="text-gray-300">现场到访人次</td><td class="text-gray-400">核销记录统计</td></tr>
+<tr><td class="font-mono text-sky">3</td><td class="text-gray-300">空中游览成交单数</td><td class="text-gray-400">财务收款台账</td></tr>
+<tr><td class="font-mono text-sky">4</td><td class="text-gray-300">空中游览销售额</td><td class="text-gray-400">财务收款台账</td></tr>
+<tr><td class="font-mono text-sky">5</td><td class="text-gray-300">留资数量</td><td class="text-gray-400">前台登记表</td></tr>
+<tr><td class="font-mono text-sky">6</td><td class="text-gray-300">线上曝光量</td><td class="text-gray-400">各平台后台数据</td></tr>
+<tr><td class="font-mono text-sky">7</td><td class="text-gray-300">新增粉丝/私域</td><td class="text-gray-400">公众号+企微统计</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- SECTION 9: 核心数据速查 -->
+<section id="summary" class="py-24 px-4">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16 anim-up"><span class="tag tag-sky mb-4">SECTION 09</span><h2 class="section-title text-3xl sm:text-4xl mt-3">核心数据速查</h2></div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<div class="glass p-6 text-center anim-up"><div class="kpi-num">5天</div><div class="text-xs text-gray-500 mt-1">活动周期</div></div>
+<div class="glass p-6 text-center anim-up"><div class="kpi-num">1000+</div><div class="text-xs text-gray-500 mt-1">目标到场</div></div>
+<div class="glass p-6 text-center anim-up"><div class="kpi-num">100单</div><div class="text-xs text-gray-500 mt-1">成交目标</div></div>
+<div class="glass p-6 text-center anim-up"><div class="kpi-num">~27万</div><div class="text-xs text-gray-500 mt-1">销售额</div></div>
+<div class="glass p-6 text-center anim-up"><div class="kpi-num">&#165;29.9</div><div class="text-xs text-gray-500 mt-1">门票价格</div></div>
+<div class="glass p-6 text-center anim-up"><div class="kpi-num">100万+</div><div class="text-xs text-gray-500 mt-1">线上曝光</div></div>
+<div class="glass p-6 text-center anim-up"><div class="kpi-num">&#165;1.4万</div><div class="text-xs text-gray-500 mt-1">总预算</div></div>
+<div class="glass p-6 text-center anim-up"><div class="kpi-num">7-10%</div><div class="text-xs text-gray-500 mt-1">转化率</div></div>
+<div class="glass p-6 text-center anim-up"><div class="kpi-num">1000+</div><div class="text-xs text-gray-500 mt-1">官号涨粉</div></div>
+<div class="glass p-6 text-center anim-up"><div class="kpi-num">500+</div><div class="text-xs text-gray-500 mt-1">私域沉淀</div></div>
+<div class="glass p-6 text-center anim-up"><div class="kpi-num">50人</div><div class="text-xs text-gray-500 mt-1">达人邀约</div></div>
+<div class="glass p-6 text-center anim-up"><div class="kpi-num">~3万</div><div class="text-xs text-gray-500 mt-1">门票收入</div></div>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="py-12 px-4 border-t border-white/5">
+<div class="max-w-6xl mx-auto text-center">
+<div class="w-12 h-12 rounded-full bg-sky/10 flex items-center justify-center text-sky font-bold mx-auto mb-4">XL</div>
+<p class="text-sm text-gray-500">杭州新联通用航空有限公司 &middot; 2026五一航空开放日活动方案</p>
+<p class="text-xs text-gray-600 mt-2 font-mono">CONFIDENTIAL</p>
+</div>
+</footer>
+<script>
+// Progress bar
+window.addEventListener('scroll', function() {
+  var h = document.documentElement, b = document.body;
+  var st = h.scrollTop || b.scrollTop;
+  var sh = (h.scrollHeight || b.scrollHeight) - h.clientHeight;
+  document.getElementById('progress-bar').style.width = (st / sh * 100) + '%';
+});
+
+// GSAP ScrollTrigger animations
+gsap.registerPlugin(ScrollTrigger);
+gsap.utils.toArray('.anim-up').forEach(function(el) {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
+    y: 50, opacity: 0, duration: 0.8, ease: 'power3.out'
+  });
+});
+// Hero animations
+gsap.from('.hero-title', { y: 60, opacity: 0, duration: 1.2, ease: 'power3.out', delay: 0.2 });
+gsap.from('.hero-sub', { y: 40, opacity: 0, duration: 1, ease: 'power3.out', delay: 0.5 });
+gsap.from('.hero-line', { scaleX: 0, duration: 0.8, ease: 'power3.out', delay: 0.7 });
+gsap.from('.hero-kpis > div', { y: 40, opacity: 0, duration: 0.6, stagger: 0.15, ease: 'power3.out', delay: 0.9 });
+
+// ECharts theme
+var cBg = 'transparent', cText = '#94a3b8', cLine = 'rgba(77,166,255,.1)';
+var cSky = '#4DA6FF', cMint = '#34D399', cGold = '#F0B848', cCoral = '#FF6B6B';
+
+// Chart 1: Goals radar
+var goalsChart = echarts.init(document.getElementById('chart-goals'), null, { renderer: 'svg' });
+goalsChart.setOption({
+  backgroundColor: cBg,
+  radar: {
+    indicator: [
+      { name: '销售转化', max: 100 },
+      { name: '线上曝光', max: 100 },
+      { name: '现场人气', max: 100 },
+      { name: '品牌沉淀', max: 100 },
+      { name: '渠道验证', max: 100 }
+    ],
+    shape: 'polygon',
+    splitNumber: 4,
+    axisName: { color: cText, fontSize: 12 },
+    splitLine: { lineStyle: { color: cLine } },
+    splitArea: { areaStyle: { color: ['rgba(77,166,255,.04)', 'rgba(77,166,255,.08)'] } },
+    axisLine: { lineStyle: { color: cLine } }
+  },
+  tooltip: {
+    backgroundColor: 'rgba(10,26,46,.9)', borderColor: 'rgba(77,166,255,.3)', textStyle: { color: '#e2e8f0', fontSize: 12 }
+  },
+  series: [{
+    type: 'radar',
+    data: [{
+      value: [85, 90, 80, 75, 70],
+      name: '目标权重',
+      areaStyle: { color: { type: 'radial', x: 0.5, y: 0.5, r: 0.5, colorStops: [{ offset: 0, color: 'rgba(77,166,255,.3)' }, { offset: 1, color: 'rgba(52,211,153,.1)' }] } },
+      lineStyle: { color: cSky, width: 2 },
+      itemStyle: { color: cSky },
+      symbol: 'circle', symbolSize: 6
+    }]
+  }]
+});
+
+// Chart 2: Funnel
+var funnelChart = echarts.init(document.getElementById('chart-funnel'), null, { renderer: 'svg' });
+funnelChart.setOption({
+  backgroundColor: cBg,
+  tooltip: {
+    trigger: 'item',
+    backgroundColor: 'rgba(10,26,46,.9)', borderColor: 'rgba(77,166,255,.3)', textStyle: { color: '#e2e8f0', fontSize: 12 },
+    formatter: '{b}: {c}'
+  },
+  series: [{
+    type: 'funnel', left: '10%', top: 20, bottom: 20, width: '80%',
+    sort: 'descending', gap: 4,
+    label: { show: true, position: 'inside', color: '#fff', fontSize: 13 },
+    labelLine: { show: false },
+    itemStyle: { borderColor: 'rgba(10,26,46,.5)', borderWidth: 2 },
+    data: [
+      { value: 1500, name: '到场 1000-1500人', itemStyle: { color: { type: 'linear', x: 0, y: 0, x2: 1, y2: 0, colorStops: [{ offset: 0, color: cSky }, { offset: 1, color: '#6DC5FF' }] } } },
+      { value: 300, name: '转化 300人次', itemStyle: { color: { type: 'linear', x: 0, y: 0, x2: 1, y2: 0, colorStops: [{ offset: 0, color: cMint }, { offset: 1, color: '#6EEBC0' }] } } },
+      { value: 100, name: '成交 100单', itemStyle: { color: { type: 'linear', x: 0, y: 0, x2: 1, y2: 0, colorStops: [{ offset: 0, color: cGold }, { offset: 1, color: '#F5D080' }] } } },
+      { value: 27, name: '销售额 ~27万', itemStyle: { color: { type: 'linear', x: 0, y: 0, x2: 1, y2: 0, colorStops: [{ offset: 0, color: cCoral }, { offset: 1, color: '#FF9B9B' }] } } }
+    ]
+  }]
+});
+
+// Chart 3: Daily schedule
+var scheduleChart = echarts.init(document.getElementById('chart-schedule'), null, { renderer: 'svg' });
+var scheduleData = [
+  { name: '到岗准备', start: 8.5, end: 9 },
+  { name: '开门迎客', start: 9, end: 10 },
+  { name: '科普1', start: 10, end: 10.5 },
+  { name: '上午参观', start: 10.5, end: 12 },
+  { name: '午休', start: 12, end: 13 },
+  { name: '科普2', start: 13.5, end: 14 },
+  { name: '下午高峰', start: 14, end: 16 },
+  { name: '科普3', start: 15.5, end: 16 },
+  { name: '截止入场', start: 17, end: 17.5 },
+  { name: '闭场', start: 17.5, end: 18 },
+  { name: '复盘', start: 18, end: 18.5 }
+];
+var schColors = [cSky, cMint, cGold, cSky, '#64748b', cGold, cSky, cGold, cCoral, '#64748b', cMint];
+scheduleChart.setOption({
+  backgroundColor: cBg,
+  tooltip: {
+    backgroundColor: 'rgba(10,26,46,.9)', borderColor: 'rgba(77,166,255,.3)', textStyle: { color: '#e2e8f0', fontSize: 12 },
+    formatter: function(p) { return p.name; }
+  },
+  grid: { left: 100, right: 30, top: 20, bottom: 40 },
+  xAxis: {
+    type: 'value', min: 8, max: 19,
+    axisLabel: { color: cText, fontSize: 11, formatter: function(v) { var h = Math.floor(v); var m = (v - h) * 60; return (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + Math.round(m); } },
+    splitLine: { lineStyle: { color: cLine } },
+    axisLine: { lineStyle: { color: cLine } }
+  },
+  yAxis: {
+    type: 'category', data: scheduleData.map(function(d) { return d.name; }).reverse(),
+    axisLabel: { color: cText, fontSize: 11 },
+    axisLine: { lineStyle: { color: cLine } },
+    splitLine: { show: false }
+  },
+  series: [{
+    type: 'bar',
+    data: scheduleData.map(function(d, i) {
+      return {
+        value: [d.start, scheduleData.length - 1 - i, d.end - d.start],
+        itemStyle: { color: schColors[i], borderRadius: 4 }
+      };
+    }),
+    encode: { x: [0, 2], y: 1 },
+    renderItem: function(params, api) {
+      var idx = params.dataIndex;
+      var d = scheduleData[idx];
+      var start = api.coord([d.start, scheduleData.length - 1 - idx]);
+      var end = api.coord([d.end, scheduleData.length - 1 - idx]);
+      var h = api.size([0, 1])[1] * 0.6;
+      return {
+        type: 'rect',
+        shape: { x: start[0], y: start[1] - h / 2, width: end[0] - start[0], height: h },
+        style: { fill: schColors[idx], opacity: 0.85 },
+        styleEmphasis: { opacity: 1 }
+      };
+    },
+    type: 'custom',
+    coordinateSystem: 'cartesian2d'
+  }]
+});
+// Fix: rebuild schedule as custom series
+scheduleChart.setOption({
+  series: [{
+    type: 'custom',
+    renderItem: function(params, api) {
+      var idx = params.dataIndex;
+      var d = scheduleData[idx];
+      var catIdx = scheduleData.length - 1 - idx;
+      var start = api.coord([d.start, catIdx]);
+      var end = api.coord([d.end, catIdx]);
+      var h = api.size([0, 1])[1] * 0.55;
+      return {
+        type: 'rect',
+        shape: { x: start[0], y: start[1] - h / 2, width: Math.max(end[0] - start[0], 4), height: h, r: 4 },
+        style: api.style({ fill: schColors[idx] })
+      };
+    },
+    data: scheduleData.map(function(d, i) { return [d.start, d.end]; }),
+    encode: { x: [0, 1], y: 2 }
+  }]
+});
+
+// Chart 4: Gantt
+var ganttChart = echarts.init(document.getElementById('chart-gantt'), null, { renderer: 'svg' });
+var ganttTasks = [
+  { name: '方案评审', owner: '市场部', s: '4.17', e: '4.18' },
+  { name: '主视觉设计', owner: '周裕康', s: '4.18', e: '4.19' },
+  { name: '启动政府沟通', owner: '于总', s: '4.19', e: '4.19' },
+  { name: '启动渠道洽谈', owner: '乐鲁杰', s: '4.19', e: '4.20' },
+  { name: '启动达人筛选', owner: '孙一凡', s: '4.20', e: '4.20' },
+  { name: '物料下单制作', owner: '周裕康', s: '4.20', e: '4.22' },
+  { name: '购票系统上线', owner: '综合部', s: '4.22', e: '4.22' },
+  { name: '拍摄宣传片', owner: '家驹', s: '4.22', e: '4.24' },
+  { name: '政府资源确认', owner: '于总', s: '4.25', e: '4.25' },
+  { name: '线上预告发布', owner: '孙一凡+家驹', s: '4.25', e: '4.27' },
+  { name: '渠道物料配送', owner: '周裕康+乐鲁杰', s: '4.25', e: '4.25' },
+  { name: '全部物料到位', owner: '周裕康', s: '4.28', e: '4.28' },
+  { name: '现场搭建', owner: '全员', s: '4.29', e: '4.30' },
+  { name: '走场演练', owner: '市场部', s: '4.30', e: '4.30' },
+  { name: '活动执行', owner: '全员', s: '5.1', e: '5.5' },
+  { name: '收官复盘', owner: '市场部', s: '5.5', e: '5.5' }
+];
+function dayNum(s) { var p = s.split('.'); return (parseInt(p[0]) - 4) * 31 + parseInt(p[1]); }
+var dayMin = dayNum('4.17'), dayMax = dayNum('5.5');
+var ganttColors = [cSky, cSky, cCoral, cMint, cGold, cSky, cGold, cCoral, cCoral, cGold, cMint, cSky, cMint, cGold, cCoral, cMint];
+ganttChart.setOption({
+  backgroundColor: cBg,
+  tooltip: {
+    backgroundColor: 'rgba(10,26,46,.9)', borderColor: 'rgba(77,166,255,.3)', textStyle: { color: '#e2e8f0', fontSize: 12 },
+    formatter: function(p) { var t = ganttTasks[p.dataIndex]; return t.name + '<br/>' + t.owner + '<br/>' + t.s + ' - ' + t.e; }
+  },
+  grid: { left: 140, right: 30, top: 20, bottom: 40 },
+  xAxis: {
+    type: 'value', min: dayMin, max: dayMax + 1,
+    axisLabel: {
+      color: cText, fontSize: 10,
+      formatter: function(v) {
+        var m = v > 31 ? 5 : 4;
+        var d = v > 31 ? v - 31 : v;
+        return m + '/' + d;
+      }
+    },
+    splitLine: { lineStyle: { color: cLine } },
+    axisLine: { lineStyle: { color: cLine } }
+  },
+  yAxis: {
+    type: 'category',
+    data: ganttTasks.map(function(t) { return t.name; }).reverse(),
+    axisLabel: { color: cText, fontSize: 11 },
+    axisLine: { lineStyle: { color: cLine } },
+    splitLine: { show: false }
+  },
+  series: [{
+    type: 'custom',
+    renderItem: function(params, api) {
+      var idx = params.dataIndex;
+      var t = ganttTasks[idx];
+      var catIdx = ganttTasks.length - 1 - idx;
+      var s = api.coord([dayNum(t.s), catIdx]);
+      var e = api.coord([dayNum(t.e) + 1, catIdx]);
+      var h = api.size([0, 1])[1] * 0.55;
+      return {
+        type: 'rect',
+        shape: { x: s[0], y: s[1] - h / 2, width: Math.max(e[0] - s[0], 6), height: h, r: 4 },
+        style: { fill: ganttColors[idx], opacity: 0.8 }
+      };
+    },
+    data: ganttTasks.map(function(t) { return [dayNum(t.s), dayNum(t.e)]; })
+  }]
+});
+
+// Chart 5: Budget pie
+var budgetChart = echarts.init(document.getElementById('chart-budget'), null, { renderer: 'svg' });
+budgetChart.setOption({
+  backgroundColor: cBg,
+  tooltip: {
+    backgroundColor: 'rgba(10,26,46,.9)', borderColor: 'rgba(77,166,255,.3)', textStyle: { color: '#e2e8f0', fontSize: 12 },
+    formatter: '{b}: &#165;{c}'
+  },
+  series: [{
+    type: 'pie', radius: ['40%', '70%'], center: ['50%', '50%'],
+    padAngle: 3, itemStyle: { borderRadius: 6 },
+    label: { color: cText, fontSize: 11, formatter: '{b}\n{d}%' },
+    labelLine: { lineStyle: { color: 'rgba(77,166,255,.3)' } },
+    data: [
+      { value: 6000, name: '伴手礼制作', itemStyle: { color: cGold } },
+      { value: 5000, name: '路口广告牌', itemStyle: { color: cSky } },
+      { value: 2000, name: '应急/杂项', itemStyle: { color: cCoral } },
+      { value: 1000, name: '现场物料', itemStyle: { color: cMint } }
+    ]
+  }]
+});
+
+// Resize
+window.addEventListener('resize', function() {
+  goalsChart.resize(); funnelChart.resize(); scheduleChart.resize(); ganttChart.resize(); budgetChart.resize();
+});
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"75124c326cb447fe934cde04713ae013","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
